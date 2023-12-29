@@ -40,4 +40,4 @@ const getHours = () => {
     res.send(attendance)
 }
 
-module.exports = { login, logout, getHours, idEntered }
+module.exports = { getHours, idEntered }
