@@ -16,28 +16,39 @@ const idEntered = async (req, res, next) => {
     if (Object.keys(loggedInUsers).includes(id)) {
         timeElapsed = Date.now() - loggedInUsers[id]
         console.log(timeElapsed)
-        if (attendance[id].hours) {
+        if (((attendance || {})[id] || {}).hours) {
             await set(ref(firebase, `/attendance/${id}/hours`), attendance[id].hours + timeElapsed / 3600000)
         }
         else {
             await set(ref(firebase, `/attendance/${id}/hours`), timeElapsed / 3600000)
         }
         delete loggedInUsers[id]
-        res.send(loggedInUsers)
+        res.send({action: 'logout', name: attendance[id].name})
     } else {
         loggedInUsers[id] = Date.now()
-        if (Object.keys(attendance).includes(id)) {
-            res.send(loggedInUsers)
-        } else {
-            res.send("first login")
+        
+        if ((attendance || {})[id]){
+            res.send({action: 'login', name: attendance[id].name})
+        } else{
+            console.log('first login')
+            res.send('first login')
         }
     }
 }
 
 
 
-const getHours = () => {
+const getHours = (req, res, next) => {
     res.send(attendance)
 }
 
-module.exports = { getHours, idEntered }
+const setUserInfo = async (req, res, next) => {
+
+    const userdata = req.body
+    console.log(userdata)
+    await set(ref(firebase, `/attendance/${userdata.id}/name`), userdata.name)
+    await set(ref(firebase, `/attendance/${userdata.id}/subteam`), userdata.subteam)
+    res.send("data set")
+}
+
+module.exports = { getHours, idEntered, setUserInfo }
