@@ -1,6 +1,8 @@
 const firebase = require('../database.js');
 const { ref, set, onValue, remove } = require('firebase/database');
 
+const {attendancePassword} = require("../config.js")
+
 var loggedInUsers = {}
 
 var attendance = {}
@@ -51,4 +53,10 @@ const setUserInfo = async (req, res, next) => {
     res.send("data set")
 }
 
-module.exports = { getHours, idEntered, setUserInfo }
+const checkPassword = (req, res, next) => {
+    const attempt = req.params.attempt
+    res.send(attempt === attendancePassword)
+
+}
+
+module.exports = { getHours, idEntered, setUserInfo, checkPassword }

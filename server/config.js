@@ -10,6 +10,7 @@ const {
     MESSAGING_SENDER_ID,
     APP_ID,
     DATABASE_URL,
+    ATTENDANCE_PASSWORD
 } = process.env;
 
 
@@ -22,5 +23,6 @@ module.exports = {
         messagingSenderId: MESSAGING_SENDER_ID,
         appId: APP_ID,
         databaseURL: DATABASE_URL
-    }
+    },
+    attendancePassword: ATTENDANCE_PASSWORD
 }
