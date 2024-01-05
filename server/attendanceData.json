@@ -1,0 +1,387 @@
+[
+    {
+        "firstName": "Karen",
+        "lastName": "Artola",
+        "studentId": 95045271
+    },
+    {
+        "firstName": "Rena",
+        "lastName": "Kim",
+        "studentId": 95035589
+    },
+    {
+        "firstName": "River",
+        "lastName": "Wu",
+        "studentId": 95034667
+    },
+    {
+        "firstName": "Sophia",
+        "lastName": "Zhang",
+        "studentId": 95043677
+    },
+    {
+        "firstName": "Teresa",
+        "lastName": "Wang",
+        "studentId": 95034693
+    },
+    {
+        "firstName": "Audrey",
+        "lastName": "Horn",
+        "studentId": 95033184
+    },
+    {
+        "firstName": "Divya",
+        "lastName": "Gandhi",
+        "studentId": 95035042
+    },
+    {
+        "firstName": "Heloise",
+        "lastName": "Boeuf",
+        "studentId": 95032860
+    },
+    {
+        "firstName": "Beck",
+        "lastName": "Lynn",
+        "studentId": 95030937
+    },
+    {
+        "firstName": "Naomi ",
+        "lastName": "Tan",
+        "studentId": 95026918
+    },
+    {
+        "firstName": "Sarabeth",
+        "lastName": "Huang",
+        "studentId": 95030674
+    },
+    {
+        "firstName": "Lincoln",
+        "lastName": "Dixon",
+        "studentId": 95037120
+    },
+    {
+        "firstName": "Maggie",
+        "lastName": "Crady",
+        "studentId": 95037285
+    },
+    {
+        "firstName": "Maria",
+        "lastName": "Uribe Estrada",
+        "studentId": 95040280
+    },
+    {
+        "firstName": "Maxwell",
+        "lastName": "Liu",
+        "studentId": 95037446
+    },
+    {
+        "firstName": "Samarth",
+        "lastName": "Karnam",
+        "studentId": 95037132
+    },
+    {
+        "firstName": "Sophia",
+        "lastName": "Hill",
+        "studentId": 95040591
+    },
+    {
+        "firstName": "Hana",
+        "lastName": "Kapadia",
+        "studentId": 95035397
+    },
+    {
+        "firstName": "Lucas",
+        "lastName": "Peng",
+        "studentId": 95034765
+    },
+    {
+        "firstName": "Madison",
+        "lastName": "Qin",
+        "studentId": 95043294
+    },
+    {
+        "firstName": "Nathan",
+        "lastName": "Hunt",
+        "studentId": 95034946
+    },
+    {
+        "firstName": "Simone",
+        "lastName": "Batra",
+        "studentId": 95034981
+    },
+    {
+        "firstName": "Yuna",
+        "lastName": "Jeong",
+        "studentId": 95037645
+    },
+    {
+        "firstName": "Evan",
+        "lastName": "Chang",
+        "studentId": 95031231
+    },
+    {
+        "firstName": "Max",
+        "lastName": "Dixon",
+        "studentId": 95033877
+    },
+    {
+        "firstName": "Mia",
+        "lastName": "Bowers",
+        "studentId": 95045370
+    },
+    {
+        "firstName": "Ryan",
+        "lastName": "Stonich",
+        "studentId": 95030733
+    },
+    {
+        "firstName": "Risha",
+        "lastName": "Suvarna",
+        "studentId": 95031617
+    },
+    {
+        "firstName": "Shanna",
+        "lastName": "Deivanayagam",
+        "studentId": 95030360
+    },
+    {
+        "firstName": "Theo",
+        "lastName": "Conrad",
+        "studentId": 95031413
+    },
+    {
+        "firstName": "Divya",
+        "lastName": "Pabba",
+        "studentId": 95047455
+    },
+    {
+        "firstName": "Katie",
+        "lastName": "Kim",
+        "studentId": 95033659
+    },
+    {
+        "firstName": "Kento",
+        "lastName": "Stutz",
+        "studentId": 95036965
+    },
+    {
+        "firstName": "Brian",
+        "lastName": "Liu",
+        "studentId": 95051274
+    },
+    {
+        "firstName": "Brooke",
+        "lastName": "Chandler",
+        "studentId": 95034931
+    },
+    {
+        "firstName": "Jade",
+        "lastName": "Rothbaum",
+        "studentId": 95046867
+    },
+    {
+        "firstName": "Ethan",
+        "lastName": "Cao",
+        "studentId": 95032682
+    },
+    {
+        "firstName": "Justun",
+        "lastName": "Kim",
+        "studentId": 95033238
+    },
+    {
+        "firstName": "Sanjana",
+        "lastName": "Adatrao",
+        "studentId": 95049942
+    },
+    {
+        "firstName": "Tony",
+        "lastName": "Chung",
+        "studentId": 95051131
+    },
+    {
+        "firstName": "Christie",
+        "lastName": "Hong",
+        "studentId": 95049526
+    },
+    {
+        "firstName": "Kyle",
+        "lastName": "Li",
+        "studentId": 95030958
+    },
+    {
+        "firstName": "Thomas",
+        "lastName": "Pham",
+        "studentId": 95038040
+    },
+    {
+        "firstName": "Agastya",
+        "lastName": "Parikh",
+        "studentId": 95039128
+    },
+    {
+        "firstName": "Arunav",
+        "lastName": "Ramanathan",
+        "studentId": 95037245
+    },
+    {
+        "firstName": "Cindy",
+        "lastName": "Liang",
+        "studentId": 95038867
+    },
+    {
+        "firstName": "Melody",
+        "lastName": "Xu",
+        "studentId": 95048109
+    },
+    {
+        "firstName": "Reed",
+        "lastName": "Truong",
+        "studentId": 95036822
+    },
+    {
+        "firstName": "Gavin",
+        "lastName": "Lin",
+        "studentId": 95034701
+    },
+    {
+        "firstName": "Jack",
+        "lastName": "Hou",
+        "studentId": 95047720
+    },
+    {
+        "firstName": "Jacob",
+        "lastName": "Mastin",
+        "studentId": 95052983
+    },
+    {
+        "firstName": "Kiana",
+        "lastName": "Gerritsen",
+        "studentId": 95035126
+    },
+    {
+        "firstName": "Nathan",
+        "lastName": "Mourrain",
+        "studentId": 95034905
+    },
+    {
+        "firstName": "Ryan",
+        "lastName": "Leung",
+        "studentId": 95053062
+    },
+    {
+        "firstName": "Aiden",
+        "lastName": "Son",
+        "studentId": 95032897
+    },
+    {
+        "firstName": "Justin ",
+        "lastName": "Lee",
+        "studentId": 95030992
+    },
+    {
+        "firstName": "Ronith",
+        "lastName": "Raha",
+        "studentId": 95032786
+    },
+    {
+        "firstName": "Tony",
+        "lastName": "Liang",
+        "studentId": 95040355
+    },
+    {
+        "firstName": "Alex",
+        "lastName": "Bradford",
+        "studentId": 95030905
+    },
+    {
+        "firstName": "Jack",
+        "lastName": "Shinghal",
+        "studentId": 95030732
+    },
+    {
+        "firstName": "Sophia",
+        "lastName": "Kim",
+        "studentId": 95031129
+    },
+    {
+        "firstName": "Susanna",
+        "lastName": "Aufrichtig",
+        "studentId": 95028514
+    },
+    {
+        "firstName": "Ryan",
+        "lastName": "Kim",
+        "studentId": 95032995
+    },
+    {
+        "firstName": "Andrew",
+        "lastName": "Fan",
+        "studentId": 95052936
+    },
+    {
+        "firstName": "Caden",
+        "lastName": "Le",
+        "studentId": 95049905
+    },
+    {
+        "firstName": "Mihir",
+        "lastName": "Pudipeddi",
+        "studentId": 95051249
+    },
+    {
+        "firstName": "Aleksey",
+        "lastName": "Valouev",
+        "studentId": 95043777
+    },
+    {
+        "firstName": "Keerath",
+        "lastName": "Pujji",
+        "studentId": 95033565
+    },
+    {
+        "firstName": "Lea",
+        "lastName": "Kwan",
+        "studentId": 95033425
+    },
+    {
+        "firstName": "Miles",
+        "lastName": "Hua",
+        "studentId": 95031325
+    },
+    {
+        "firstName": "Zach",
+        "lastName": "Szeto",
+        "studentId": 95030644
+    },
+    {
+        "firstName": "Conrad",
+        "lastName": "Lui",
+        "studentId": 95036807
+    },
+    {
+        "firstName": "Jennifer",
+        "lastName": "Yang",
+        "studentId": 95049599
+    },
+    {
+        "firstName": "Priya",
+        "lastName": "Tamura",
+        "studentId": 95036966
+    },
+    {
+        "firstName": "Tanish",
+        "lastName": "Gaglani",
+        "studentId": 95048485
+    },
+    {
+        "firstName": "Connor",
+        "lastName": "Lee",
+        "studentId": 95034953
+    },
+    {
+        "firstName": "Alexander",
+        "lastName": "Deisseroth",
+        "studentId": 95035162
+    }
+]
