@@ -20,13 +20,13 @@ const idEntered = async (req, res, next) => {
 
     for (i in attendance.studentData) {
         if (attendance.studentData[i].studentId == id) {
-            
+
             name = attendance.studentData[i].firstName
             break
         }
-        
+
     }
-    if (!name){
+    if (!name) {
         res.send("id does not exist")
         return
     }
@@ -35,11 +35,14 @@ const idEntered = async (req, res, next) => {
     if (Object.keys(loggedInUsers).includes(id)) {
         timeElapsed = Date.now() - loggedInUsers[id]
         console.log(timeElapsed)
-        if (((attendance || {})[id] || {}).hours) {
-            await set(ref(firebase, `/attendance/${id}/hours`), attendance[id].hours + timeElapsed / 3600000)
-        }
-        else {
-            await set(ref(firebase, `/attendance/${id}/hours`), timeElapsed / 3600000)
+
+        if (timeElapsed / 3600000 < 10) {
+            if (((attendance || {})[id] || {}).hours) {
+                await set(ref(firebase, `/attendance/${id}/hours`), attendance[id].hours + (timeElapsed / 3600000))
+            }
+            else {
+                await set(ref(firebase, `/attendance/${id}/hours`), timeElapsed / 3600000)
+            }
         }
         delete loggedInUsers[id]
         res.send({ action: 'logout', name: name })
