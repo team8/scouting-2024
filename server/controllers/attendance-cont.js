@@ -10,7 +10,12 @@ var attendance = {}
 onValue(ref(firebase, `/attendance`), (snapshot) => {
     const data = snapshot.val();
     attendance = data
+    loggedInUsers = data.loggedInUsers || {}
 })
+
+
+
+
 
 const idEntered = async (req, res, next) => {
     const endsOfWeeks = {1: 1705190400000, 2: 1705795200000, 3: 1706400000000, 4: 1707004800000, 5: 1707609600000, 6: 1708214400000, 7: 1708819200000, 8: 1709424000000, 9: 1710028800000, 10: 1710633600000, 11: 1711238400000}
@@ -41,7 +46,7 @@ const idEntered = async (req, res, next) => {
     }
 
 
-    if (Object.keys(loggedInUsers).includes(id)) {
+    if (Object.keys(loggedInUsers || {}).includes(id)) {
         timeElapsed = Date.now() - loggedInUsers[id]
         console.log(timeElapsed)
 
@@ -60,8 +65,8 @@ const idEntered = async (req, res, next) => {
     } else {
         loggedInUsers[id] = Date.now()
         res.send({ action: 'login', name: name })
-
     }
+    await set(ref(firebase, `/attendance/loggedInUsers`), loggedInUsers)
 }
 
 
