@@ -13,6 +13,15 @@ onValue(ref(firebase, `/attendance`), (snapshot) => {
 })
 
 const idEntered = async (req, res, next) => {
+    const endsOfWeeks = {1: 1705190400000, 2: 1705795200000, 3: 1706400000000, 4: 1707004800000, 5: 1707609600000, 6: 1708214400000, 7: 1708819200000, 8: 1709424000000, 9: 1710028800000, 10: 1710633600000, 11: 1711238400000}
+    var week = 0
+    for (i in Object.keys(endsOfWeeks)){
+        if (endsOfWeeks[i] > Date.now()){
+            week = i
+            break
+        }
+
+    }
     const id = req.params.id
     var name = ''
     console.log('entered')
@@ -38,9 +47,11 @@ const idEntered = async (req, res, next) => {
 
         if (timeElapsed / 3600000 < 10) {
             if (((attendance || {})[id] || {}).hours) {
+                await set(ref(firebase, `/attendance/${id}/hoursList/${week}`), attendance[id].hours + (timeElapsed / 3600000))
                 await set(ref(firebase, `/attendance/${id}/hours`), attendance[id].hours + (timeElapsed / 3600000))
             }
             else {
+                await set(ref(firebase, `/attendance/${id}/hoursList/${week}`), timeElapsed / 3600000)
                 await set(ref(firebase, `/attendance/${id}/hours`), timeElapsed / 3600000)
             }
         }
@@ -55,7 +66,7 @@ const idEntered = async (req, res, next) => {
 
 
 
-const getHours = (req, res, next) => {
+const getTableData = (req, res, next) => {
     res.send(attendance)
 }
 
@@ -66,4 +77,9 @@ const checkPassword = (req, res, next) => {
 
 }
 
-module.exports = { getHours, idEntered, checkPassword }
+const getSubteamHours = (req, res, next) => {
+
+    res.send("Hahahaa")
+}
+
+module.exports = { getTableData, idEntered, checkPassword, getSubteamHours }

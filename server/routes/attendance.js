@@ -1,14 +1,14 @@
 const express = require('express'); 
-const { getHours, idEntered, checkPassword} = require('../controllers/attendance-cont')
+const { getTableData, idEntered, checkPassword, getSubteamHours} = require('../controllers/attendance-cont')
 
 const router = express.Router(); 
 
 
 router.get('/enter-id/:id', idEntered)
 
-router.get('/get-hours', getHours)
+router.get('/get-table-data', getTableData)
 
-
+router.get('/get-subteam-data', getSubteamHours)
 
 router.get('/check-password/:attempt', checkPassword)
 
