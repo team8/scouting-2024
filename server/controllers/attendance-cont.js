@@ -84,11 +84,14 @@ const checkPassword = (req, res, next) => {
 
 const getStudentData = (req, res, next) => {
     const id = req.params.id
+    try{
     for (i in attendance.studentData) {
         if (attendance.studentData[i].studentId == id) {
             res.send({ ...attendance.studentData[i], hours: attendance[id].hours })
             return
         }
+    }}catch{
+        res.send("id not found")
     }
     res.send("id not found")
 }
