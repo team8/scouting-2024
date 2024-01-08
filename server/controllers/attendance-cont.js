@@ -112,10 +112,20 @@ const addHours = async (req, res, next) => {
 
     }
 
-    await set(ref(firebase, `/attendance/${id}/hoursList/${week}`), attendance[id].hours + hours)
-    await set(ref(firebase, `/attendance/${id}/hours`), attendance[id].hours + hours)
-
+    try{
+        if (((attendance || {})[id] || {}).hours) {
+            await set(ref(firebase, `/attendance/${id}/hoursList/${week}`), attendance[id].hours + hours)
+            await set(ref(firebase, `/attendance/${id}/hours`), attendance[id].hours + hours)
+        }
+        else {
+            await set(ref(firebase, `/attendance/${id}/hoursList/${week}`), hours)
+            await set(ref(firebase, `/attendance/${id}/hours`), hours)
+        }
     res.send("added")
+}catch{
+    res.send("no hours")
+}
+    
 
 }
 
