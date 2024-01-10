@@ -11,6 +11,7 @@ app.set('views', './views')
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.json()); // extracts the body portion of an incoming request and exposes it on req.body
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors()); // cross-origin resource sharing allows for access of restricted resources on webpages from other domains
 app.use(express.static(__dirname + '/views'));
 
