@@ -148,12 +148,14 @@ const getHours = (req, res, next) => {
     var hours = 0
     for (i in Object.keys(attendance)){
         if(parseInt(attendance[i])){
+            
             if(attendance[i].fullName.toLowerCase().split().join('') === req.body.user_name){
                 hours = attendance[i].hours
+                break
             }
         }
     }
-    res.send("You have spent "+ toString(hours)+" at lab this season.")
+    res.send("You have spent "+ hours.toString() +" at lab this season.")
 }
 
 module.exports = { getTableData, idEntered, checkPassword, getSubteamHours, getStudentData, addHours, correctStudentData, getHours }
