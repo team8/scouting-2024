@@ -132,4 +132,20 @@ const addHours = async (req, res, next) => {
 
 }
 
-module.exports = { getTableData, idEntered, checkPassword, getSubteamHours, getStudentData, addHours }
+const correctStudentData = async (req, res, next) => {
+    for (i in attendance.studentData){
+        var student = attendance.studentData[i];
+        attendance[student.studentId] = {...attendance[student.studentId], ...student}
+    }
+    await set(ref(firebase, `/attendance`), attendance)
+    res.send("corrected")
+
+}
+
+const getHours = (req, res, next) => {
+    console.log("Get hours triggered")
+    console.log(req.body)
+    res.send("Here are your hours: sike gottem")
+}
+
+module.exports = { getTableData, idEntered, checkPassword, getSubteamHours, getStudentData, addHours, correctStudentData, getHours }
