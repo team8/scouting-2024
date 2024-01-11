@@ -90,10 +90,11 @@ const getStudentData = (req, res, next) => {
             res.send({ ...attendance.studentData[i], hours: attendance[id].hours })
             return
         }
+        res.send("id not found")
     }}catch{
         res.send("id not found")
     }
-    res.send("id not found")
+    
 }
 
 const getSubteamHours = (req, res, next) => {
