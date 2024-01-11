@@ -90,8 +90,10 @@ const getStudentData = (req, res, next) => {
             res.send({ ...attendance.studentData[i], hours: attendance[id].hours })
             return
         }
-        res.send("id not found")
-    }}catch{
+        
+    }
+    res.send("id not found")
+}catch{
         res.send("id not found")
     }
     
@@ -145,11 +147,12 @@ const correctStudentData = async (req, res, next) => {
 
 const getHours = (req, res, next) => {
     var hours = 0
+    console.log(req.body)
     for (i in Object.keys(attendance)){
         const id = Object.keys(attendance)[i]
         
         if(parseInt(id)){
-            console.log(req.body.user_name)
+            
             console.log(attendance[id].fullName.toLowerCase().split(' ').join(''))
             if(attendance[id].fullName.toLowerCase().split(' ').join('') === req.body.user_name){
                 hours = attendance[id].hours
