@@ -152,10 +152,9 @@ const getHours = (req, res, next) => {
         const id = Object.keys(attendance)[i]
         
         if(parseInt(id)){
-            console.log(req.body.user_name)
-            console.log("950" + req.body.user_name.slice(2))
-            console.log(attendance[id].fullName.toLowerCase().split(' ').join(''))
-            if(attendance[id].fullName.toLowerCase().split(' ').join('').replace(/[0-9]/g, '') === req.body.user_name || "950" + req.body.user_name.slice(2) == id || attendance[id].fullName.toLowerCase().split('.').join('').replace(/[0-9]/g, '') === req.body.user_name){
+            console.log(req.body.user_name.split('.').join(''))
+            console.log(attendance[id].fullName.toLowerCase().split(' ').join('').replace(/[0-9]/g, ''))
+            if(attendance[id].fullName.toLowerCase().split(' ').join('').replace(/[0-9]/g, '') === req.body.user_name.split('.').join('') || "950" + req.body.user_name.slice(2) == id ){
                 hours = attendance[id].hours
                 break
             }
