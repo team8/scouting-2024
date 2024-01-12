@@ -145,16 +145,32 @@ const correctStudentData = async (req, res, next) => {
 
 }
 
-const getHours = (req, res, next) => {
+const getHours = async (req, res, next) => {
     var hours = 0
-    console.log(req.body)
+    console.log(req.body.user_id)
+    var name = ""
+    await fetch('https://slack.com/api/users.info?user='+req.body.user_id, {
+        headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+            "Authorization": "Bearer xoxb-3317728684-6442335437126-kzFQzkvGyawYjzsnYHWg5G9T",
+            "user": toString(req.body.user_id)
+          },
+    }).then(
+        res => res.text()
+    ).then(
+        data => {
+            data = JSON.parse(data)
+            console.log(data.user.profile.real_name)
+            name = data.user.profile.real_name
+        }
+    )
+
     for (i in Object.keys(attendance)){
         const id = Object.keys(attendance)[i]
         
         if(parseInt(id)){
-            console.log(req.body.user_name.split('.').join(''))
-            console.log(attendance[id].fullName.toLowerCase().split(' ').join('').replace(/[0-9]/g, ''))
-            if(attendance[id].fullName.toLowerCase().split(' ').join('').replace(/[0-9]/g, '') === req.body.user_name.split('.').join('') || "950" + req.body.user_name.slice(2) == id ){
+            if(name === attendance[id].fullName){
                 hours = attendance[id].hours
                 break
             }
