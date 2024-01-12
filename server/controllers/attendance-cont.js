@@ -161,8 +161,12 @@ const getHours = async (req, res, next) => {
     ).then(
         data => {
             data = JSON.parse(data)
+            try{
             console.log(data.user.profile.real_name)
             name = data.user.profile.real_name
+        }catch(e){
+            console.log(e.message)
+        }
         }
     )
 
