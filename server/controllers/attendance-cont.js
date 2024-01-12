@@ -153,7 +153,7 @@ const getHours = async (req, res, next) => {
         headers: {
             "Content-Type": "application/json",
             // 'Content-Type': 'application/x-www-form-urlencoded',
-            "Authorization": "Bearer xoxb-3317728684-6442335437126-kzFQzkvGyawYjzsnYHWg5G9T",
+            "Authorization": "Bearer xoxb-3317728684-6442335437126-Roxo1X9HDMZ3rzAEcAnUjtke",
             "user": toString(req.body.user_id)
           },
     }).then(
@@ -162,7 +162,7 @@ const getHours = async (req, res, next) => {
         data => {
             data = JSON.parse(data)
             try{
-            console.log(data.user.profile.real_name)
+            console.log(data)
             name = data.user.profile.real_name
         }catch(e){
             console.log(e.message)
