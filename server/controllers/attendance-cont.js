@@ -153,7 +153,7 @@ const getHours = async (req, res, next) => {
         headers: {
             "Content-Type": "application/json",
             // 'Content-Type': 'application/x-www-form-urlencoded',
-            "Authorization": "Bearer xoxb-3317728684-6442335437126-jePU4VTAUXc61vcbcrXucLpV",
+            "Authorization": "Bearer xoxb-3317728684-6442335437126-mKYqcxdAZuaMAWqDDRhe7tX0",
             "user": toString(req.body.user_id)
           },
     }).then(
