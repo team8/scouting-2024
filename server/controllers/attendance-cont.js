@@ -73,8 +73,7 @@ const idEntered = async (req, res, next) => {
 
 const getTableData = (req, res, next) => {
     res.send(attendance)
-}
-
+} 
 
 const checkPassword = (req, res, next) => {
     const attempt = req.params.attempt
@@ -98,7 +97,7 @@ const getStudentData = (req, res, next) => {
 
 const getSubteamHours = (req, res, next) => {
 
-    res.send("Hahahaa")
+    res.send()
 }
 
 const addHours = async (req, res, next) => {

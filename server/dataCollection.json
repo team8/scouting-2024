@@ -1,0 +1,42 @@
+{
+    "startingLocation": "1, 2, or 3",
+    "autoSpeakerScoring": {
+        "accuracy": "percentage",
+        "shots": "num",
+        "points": "num"
+    },
+    "autoAmpScoring": {
+        "accuracy": "percantage",
+        "shots": "num",
+        "points": "num"
+    },
+    "autoPiecesStolen": "num",
+    "mobilityBonus": "true or false",
+    "teleopSpeakerScoring": {
+        "accuracy": "percentage",
+        "shots": "num",
+        "points": "num"
+    },
+    "teleopAmpScoring": {
+        "accuracy": "percentage",
+        "shots": "num",
+        "points": "num"
+    },
+    "intake": {
+        "ground": "num",
+        "singleSub": "num"
+    },
+    "teleopPiecesStolen": "num",
+    "climbStatus": {
+        "status": "null, park, engage",
+        "buddyClimb": "true or false",
+        "harmonyBonus": "true or false"},
+    "trap": "num",
+    "notes": "text",
+    "climbNotes": "text",
+    "drivingRating": "num",
+    "intakeRating": "num",
+    "defenseRating": "num",
+    "climbRating": "num",
+    "cycleTimeRating": "num"
+}
