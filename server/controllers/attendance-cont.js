@@ -1,7 +1,7 @@
 const firebase = require('../database.js');
 const { ref, set, onValue, remove } = require('firebase/database');
 
-const { attendancePassword } = require("../config.js")
+const { attendancePassword, slackbotAuthKey } = require("../config.js")
 
 var loggedInUsers = {}
 
@@ -153,7 +153,7 @@ const getHours = async (req, res, next) => {
         headers: {
             "Content-Type": "application/json",
             // 'Content-Type': 'application/x-www-form-urlencoded',
-            "Authorization": "Bearer xoxb-3317728684-6470374744244-MIz64r2vrUrrXMieptCdRnL3",
+            "Authorization": slackbotAuthKey,
             "user": toString(req.body.user_id)
         },
     }).then(

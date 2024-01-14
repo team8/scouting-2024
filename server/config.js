@@ -10,7 +10,8 @@ const {
     MESSAGING_SENDER_ID,
     APP_ID,
     DATABASE_URL,
-    ATTENDANCE_PASSWORD
+    ATTENDANCE_PASSWORD,
+    SLACKBOT_AUTH_KEY
 } = process.env;
 
 
@@ -24,5 +25,6 @@ module.exports = {
         appId: APP_ID,
         databaseURL: DATABASE_URL
     },
-    attendancePassword: ATTENDANCE_PASSWORD
+    attendancePassword: ATTENDANCE_PASSWORD,
+    slackbotAuthKey: SLACKBOT_AUTH_KEY
 }
