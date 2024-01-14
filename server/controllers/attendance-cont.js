@@ -84,19 +84,19 @@ const checkPassword = (req, res, next) => {
 
 const getStudentData = (req, res, next) => {
     const id = req.params.id
-    try{
-    for (i in attendance.studentData) {
-        if (attendance.studentData[i].studentId == id) {
-            res.send({ ...attendance.studentData[i], hours: attendance[id].hours })
-            return
+    try {
+        for (i in attendance.studentData) {
+            if (attendance.studentData[i].studentId == id) {
+                res.send({ ...attendance.studentData[i], hours: attendance[id].hours })
+                return
+            }
+
         }
-        
-    }
-    res.send("id not found")
-}catch{
+        res.send("id not found")
+    } catch {
         res.send("id not found")
     }
-    
+
 }
 
 const getSubteamHours = (req, res, next) => {
@@ -118,7 +118,7 @@ const addHours = async (req, res, next) => {
 
     }
 
-    try{
+    try {
         if (((attendance || {})[id] || {}).hours) {
             await set(ref(firebase, `/attendance/${id}/hoursList/${week}`), attendance[id].hours + hours)
             await set(ref(firebase, `/attendance/${id}/hours`), attendance[id].hours + hours)
@@ -127,18 +127,18 @@ const addHours = async (req, res, next) => {
             await set(ref(firebase, `/attendance/${id}/hoursList/${week}`), hours)
             await set(ref(firebase, `/attendance/${id}/hours`), hours)
         }
-    res.send("added")
-}catch{
-    res.send("no hours")
-}
-    
+        res.send("added")
+    } catch {
+        res.send("no hours")
+    }
+
 
 }
 
 const correctStudentData = async (req, res, next) => {
-    for (i in attendance.studentData){
+    for (i in attendance.studentData) {
         var student = attendance.studentData[i];
-        attendance[student.studentId] = {...attendance[student.studentId], ...student}
+        attendance[student.studentId] = { ...attendance[student.studentId], ...student }
     }
     await set(ref(firebase, `/attendance`), attendance)
     res.send("corrected")
@@ -149,38 +149,53 @@ const getHours = async (req, res, next) => {
     var hours = 0
     console.log(req.body.user_id)
     var name = ""
-    await fetch('https://slack.com/api/users.info?user='+req.body.user_id, {
+    await fetch('https://slack.com/api/users.info?user=' + req.body.user_id, {
         headers: {
             "Content-Type": "application/json",
             // 'Content-Type': 'application/x-www-form-urlencoded',
-            "Authorization": "Bearer xoxb-3317728684-6470374744244-Wz9bQHsipw4FqrYLYqcXF7m3",
+            "Authorization": "Bearer xoxb-3317728684-6470374744244-MIz64r2vrUrrXMieptCdRnL3",
             "user": toString(req.body.user_id)
-          },
+        },
     }).then(
         res => res.text()
     ).then(
         data => {
             data = JSON.parse(data)
-            try{
-            console.log(data)
-            name = data.user.profile.real_name
-        }catch(e){
-            console.log(e.message)
-        }
+            try {
+                console.log(data)
+                name = data.user.profile.real_name
+            } catch (e) {
+                console.log(e.message)
+            }
         }
     )
 
-    for (i in Object.keys(attendance)){
+    for (i in Object.keys(attendance)) {
         const id = Object.keys(attendance)[i]
-        
-        if(parseInt(id)){
-            if(name === attendance[id].fullName){
+
+        if (parseInt(id)) {
+            if (name === attendance[id].fullName) {
                 hours = attendance[id].hours
                 break
             }
         }
     }
-    res.send("You have spent "+ (Math.round(hours * 100) / 100).toString() +" hours at lab this season.")
+    res.send("You have spent " + (Math.round(hours * 100) / 100).toString() + " hours at lab this season.")
 }
 
-module.exports = { getTableData, idEntered, checkPassword, getSubteamHours, getStudentData, addHours, correctStudentData, getHours }
+const getAtLab = async (req, res, next) => {
+    atLab = {}
+    for (i in Object.keys(attendance.loggedInUsers)) {
+        const id = Object.keys(attendance.loggedInUsers)[i]
+        if ((Date.now() - attendance.loggedInUsers[id]) / 3600000 < 10) {
+            atLab[id] = attendance[id].fullName
+        } else {
+            delete loggedInUsers[id]
+
+        }
+    }
+    await set(ref(firebase, `/attendance/loggedInUsers`), loggedInUsers)
+    res.send(atLab)
+}
+
+module.exports = { getTableData, idEntered, checkPassword, getSubteamHours, getStudentData, addHours, correctStudentData, getHours, getAtLab }
