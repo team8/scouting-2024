@@ -12,7 +12,7 @@ router.get('/get-subteam-data', getSubteamHours)
 
 router.get('/check-password/:attempt', checkPassword)
 
-router.get('/get-student-data/:id', getStudentData)
+router.get('/get-student-data/:mode/:selector', getStudentData)
 
 router.post('/add-hours', addHours)
 

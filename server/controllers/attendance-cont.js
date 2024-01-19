@@ -83,18 +83,37 @@ const checkPassword = (req, res, next) => {
 }
 
 const getStudentData = (req, res, next) => {
-    const id = req.params.id
+    const mode = req.params.mode
+    const selector = req.params.selector
+    console.log(mode)
     try {
-        for (i in attendance.studentData) {
-            if (attendance.studentData[i].studentId == id) {
-                res.send({ ...attendance.studentData[i], hours: attendance[id].hours })
-                return
-            }
+        if (mode === "id") {
+            const id = selector
+            for (i in attendance.studentData) {
+                if (attendance.studentData[i].studentId == id) {
+                    res.send({ ...attendance.studentData[i], hours: attendance[id].hours })
+                    return
+                }
 
+            }
+            res.send("id not found")
+        } else {
+            const name = selector.toLowerCase()
+            console.log(name)
+            
+            Object.keys(attendance).map((i) => {
+                console.log(attendance[i].fullName)
+                if ((attendance[i].fullName || 'none').toLowerCase() === name) {
+                    res.send(attendance[i])
+                    return
+                }
+
+            })
+            res.send("name not found")
         }
-        res.send("id not found")
-    } catch {
-        res.send("id not found")
+    } catch(e) {
+        console.log(e.message)
+        res.send("error")
     }
 
 }
@@ -105,6 +124,7 @@ const getSubteamHours = (req, res, next) => {
 }
 
 const addHours = async (req, res, next) => {
+
     const id = req.body.id
     const hours = parseFloat(req.body.hours)
 
