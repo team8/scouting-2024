@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const attendance = require('./routes/attendance')
+const dataCollected = require('./routes/dataCollection')
 
 const port = 4000
 
@@ -22,6 +23,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/attendance', attendance)
+
+app.use('/data-collected', dataCollected)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
