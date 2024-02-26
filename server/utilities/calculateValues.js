@@ -1,6 +1,10 @@
+const capitaliseFirstLetter = (word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
 const findValue = (qualsList, valueToFind, type) => {
     let value = 0;
-    if(type == 'min') value = 9999999;
+    if(type == 'min') value = 9999999; //Maybe there's a better way to do this but idk lol
     
 
     if(type == 'min' || type == 'max')
@@ -11,7 +15,7 @@ const findValue = (qualsList, valueToFind, type) => {
 
     }
 
-    if(type == 'average' || type == 'total') {
+    else if(type == 'average' || type == 'total') {
         for(let i = 0; i < qualsList.length; i++) {
 
             value += qualsList[i][valueToFind];
@@ -20,27 +24,28 @@ const findValue = (qualsList, valueToFind, type) => {
 
         if (type == 'average') value /= qualsList.length;
     }
-    
+
+    else console.log('Invalid type: [' + type + '] used in findValue');
 
     return value;
 }
 
 const calculateValues = (qualsList) => {
     let cumulativeValues = {'min': {}, 'max': {}, 'average': {}, 'total': {}};
-    let valueTypes = ['min', 'max', 'average', 'total'];
+    let valueTypes = Object.keys(cumulativeValues);
 
     let valuesToFind = [
     'autoSpeakerNotes', 'autoAmpNotes', 'autoFailedSpeakerNotes', 'autoFailedAmpNotes',
     'teleopSpeakerNotes', 'amplifiedSpeakerNotes', 'teleopAmpNotes', 'teleopFailedSpeakerNotes', 'teleopFailedAmpNotes',
     'traps', 'failedTraps', 'driverRating', 'defenseRating', 'intakeRating', 'climbRating'];
 
-    //allMinimums.autoSpeakerNotes = findMin(teamData, 'autoSpeakerNotes');
-
     for(let i = 0; i < Object.keys(valueTypes).length; i++) {
+        //Runs through 4 types of data to collect - min, max, average, total
 
         for(let j = 0; j < Object.keys(valuesToFind).length; j++) {
+            //This for loop runs through each value to find and runs the function findValue for each one, and then adds that value to the cumulative values
 
-            cumulativeValues[valueTypes[i]].valuesToFind[j] = findValue(qualsList, valuesToFind[j], valueTypes[i]);
+            cumulativeValues[valueTypes[i]][valueTypes[i] + capitaliseFirstLetter(valuesToFind[j])] = findValue(qualsList, valuesToFind[j], valueTypes[i]);
             
         }
 

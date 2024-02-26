@@ -1,6 +1,6 @@
 const firebase = require('../database.js');
 const { ref, set, onValue } = require('firebase/database');
-//const { calculateValues } = require('../utilities');
+const { calculateValues, calculatePoints } = require('../utilities');
 
 
 var scoutingData = {}
@@ -32,11 +32,13 @@ const addData = async (req, res, next) => {
     matchData.speakerAccuracy = (totalSpeakerNotes)/(allAttemptedSpeakerNotes);
     matchData.ampAccuracy = (totalAmpNotes)/(allAttemptedAmpNotes);
     matchData.trapAccuracy = (matchData.traps)/(matchData.traps + matchData.failedTraps);
-    //percentGroundIntake (i forgor to add it to collection app)
-    //percentSourceIntake (that's the substation)
+    //matchData.percentGroundIntake (i forgor to add it to collection app)
+    //matchData.percentSourceIntake (that's the substation)
     matchData.attemptedSpeakerPercent = (allAttemptedSpeakerNotes)/(allAttemptedSpeakerNotes + allAttemptedAmpNotes);
     matchData.attemptedAmpPercent = (allAttemptedAmpNotes)/(allAttemptedSpeakerNotes + allAttemptedAmpNotes);
     matchData.amplifiedSpeakerPercent = (matchData.amplifiedSpeakerNotes)/(matchData.teleopSpeakerNotes + matchData.amplifiedSpeakerNotes);
+
+    matchData.pointsScored = calculatePoints(matchData.autoSpeakerNotes, matchData.autoAmpNotes, matchData.teleopSpeakerNotes, matchData.amplifiedSpeakerNotes, matchData.teleopAmpNotes, matchData.traps, matchData.climbStatus, matchData.mobility);
 
 
     await set(ref(firebase, `/scouting-data/${data.event}/${data.team}/qm/${data.matchNo}/`), matchData);
