@@ -5,8 +5,6 @@ const router = express.Router();
 
 //router.get('/get-data', getData);
 
-router.get('/add-data/:data', addData);
-
-//router.get('/change-data', changeData);
+router.post('/add-data/', addData);
 
 module.exports = router;
