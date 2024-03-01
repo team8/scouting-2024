@@ -1,11 +1,11 @@
-const calculatePoints = (autoSN, autoAN, teleSN, aSN, teleAN, traps, climbStatus, mobility) => {
+const calculatePoints = (autoSN, autoAN, teleSN, teleAN, traps, climbStatus, mobility) => {
     let totalPoints = 0;
 
     if (mobility) totalPoints += 2;
     if (traps > 0) totalPoints += 5;
     totalPoints += teleAN;
     totalPoints += (autoAN + teleSN) * 2;
-    totalPoints += (autoSN + aSN) * 5;
+    totalPoints += autoSN * 5;
 
     if(climbStatus == 'Parked') 
     totalPoints += 1;

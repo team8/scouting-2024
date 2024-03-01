@@ -1,6 +1,6 @@
 const firebase = require('../database.js');
 const { ref, set, onValue } = require('firebase/database');
-const { calculateValues, calculatePoints } = require('../utilities');
+const { calculateValues, calculatePercents, calculatePoints } = require('../utilities');
 
 
 var scoutingData = {}
@@ -20,7 +20,7 @@ const addData = async (req, res, next) => {
     delete matchData.matchNo;
     
 
-    //let cumulativeValues = calculateValues(scoutingData[data.event][data.team]['qm']);
+    let cumulativeValues = calculateValues(scoutingData[data.event][data.team]['qm']);
 
     let totalSpeakerNotes = matchData.autoSpeakerNotes + matchData.teleopSpeakerNotes;
     let totalAmpNotes = matchData.autoAmpNotes + matchData.teleopAmpNotes;
@@ -36,19 +36,22 @@ const addData = async (req, res, next) => {
     //matchData.percentSourceIntake (that's the substation)
     matchData.attemptedSpeakerPercent = (allAttemptedSpeakerNotes)/(allAttemptedSpeakerNotes + allAttemptedAmpNotes);
     matchData.attemptedAmpPercent = (allAttemptedAmpNotes)/(allAttemptedSpeakerNotes + allAttemptedAmpNotes);
-    matchData.amplifiedSpeakerPercent = (matchData.amplifiedSpeakerNotes)/(matchData.teleopSpeakerNotes + matchData.amplifiedSpeakerNotes);
 
-    matchData.pointsScored = calculatePoints(matchData.autoSpeakerNotes, matchData.autoAmpNotes, matchData.teleopSpeakerNotes, matchData.amplifiedSpeakerNotes, matchData.teleopAmpNotes, matchData.traps, matchData.climbStatus, matchData.mobility);
 
+
+    matchData.pointsScored = calculatePoints(matchData.autoSpeakerNotes, matchData.autoAmpNotes, matchData.teleopSpeakerNotes, matchData.teleopAmpNotes, matchData.traps, matchData.climbStatus, matchData.mobility);
+
+    let percentValues = calculatePercents(scoutingData[data.event][data.team]);
 
     await set(ref(firebase, `/scouting-data/${data.event}/${data.team}/qm/${data.matchNo}/`), matchData);
 
-    /*
+    
     await set(ref(firebase, `/scouting-data/${data.event}/${data.team}/min/`), cumulativeValues[0]);
     await set(ref(firebase, `/scouting-data/${data.event}/${data.team}/max/`), cumulativeValues[1]);
     await set(ref(firebase, `/scouting-data/${data.event}/${data.team}/average/`), cumulativeValues[2]);
     await set(ref(firebase, `/scouting-data/${data.event}/${data.team}/total/`), cumulativeValues[3]);
-    */
+    await set(ref(firebase, `/scouting-data/${data.event}/${data.team}/percent/`), percentValues);
+    
 
     res.send('Values updated ~');
     return;
