@@ -20,7 +20,7 @@ const addData = async (req, res, next) => {
     delete matchData.matchNo;
     
 
-    let cumulativeValues = calculateValues(scoutingData[data.event][data.team]['qm']);
+
 
     let totalSpeakerNotes = matchData.autoSpeakerNotes + matchData.teleopSpeakerNotes;
     let totalAmpNotes = matchData.autoAmpNotes + matchData.teleopAmpNotes;
@@ -41,11 +41,13 @@ const addData = async (req, res, next) => {
 
     matchData.pointsScored = calculatePoints(matchData.autoSpeakerNotes, matchData.autoAmpNotes, matchData.teleopSpeakerNotes, matchData.teleopAmpNotes, matchData.traps, matchData.climbStatus, matchData.mobility);
 
-    let percentValues = calculatePercents(scoutingData[data.event][data.team]);
+    
 
     await set(ref(firebase, `/scouting-data/${data.event}/${data.team}/qm/${data.matchNo}/`), matchData);
-
     
+    let percentValues = calculatePercents(scoutingData[data.event][data.team]);
+    let cumulativeValues = calculateValues(scoutingData[data.event][data.team]['qm']);
+
     await set(ref(firebase, `/scouting-data/${data.event}/${data.team}/min/`), cumulativeValues[0]);
     await set(ref(firebase, `/scouting-data/${data.event}/${data.team}/max/`), cumulativeValues[1]);
     await set(ref(firebase, `/scouting-data/${data.event}/${data.team}/average/`), cumulativeValues[2]);

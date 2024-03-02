@@ -37,7 +37,8 @@ const calculateValues = (qualsList) => {
     let valuesToFind = [
     'autoSpeakerNotes', 'autoAmpNotes', 'autoFailedSpeakerNotes', 'autoFailedAmpNotes',
     'teleopSpeakerNotes', 'teleopAmpNotes', 'teleopFailedSpeakerNotes', 'teleopFailedAmpNotes',
-    'traps', 'failedTraps', 'driverRating', 'defenseRating', 'intakeRating', 'climbRating', 'died', 'tipped'];
+    'traps', 'failedTraps', 'groundIntakes', 'substationIntakes', 'pointValues', 
+    'driverRating', 'defenseRating', 'intakeRating', 'climbRating', 'died', 'tipped'];
 
     for(let i = 0; i < Object.keys(valueTypes).length; i++) {
         //Runs through 4 types of data to collect - min, max, average, total
@@ -45,7 +46,7 @@ const calculateValues = (qualsList) => {
         for(let j = 0; j < Object.keys(valuesToFind).length; j++) {
             //This for loop runs through each value to find and runs the function findValue for each one, and then adds that value to the cumulative values
 
-            if(!(j == 14 || j == 15) || i == 3) //For died & tipped, only total should be ran
+            if(!(valuesToFind[j] == 'died' || valuesToFind[j] == 'tipped') || i == 3) //For died & tipped, only total should be ran
             cumulativeValues[valueTypes[i]][valueTypes[i] + capitaliseFirstLetter(valuesToFind[j])] = findValue(qualsList, valuesToFind[j], valueTypes[i]);
             
         }

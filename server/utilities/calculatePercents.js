@@ -19,8 +19,8 @@ const findTotalValue = (qmList, varName, value) => {
     
 }
 
-const calculateAverages = (teamData) => {
-    let averages = {};
+const calculatePercents = (teamData) => {
+    let percents = {};
 
     let qmList = teamData.qm;
     let totals = teamData.total;
@@ -30,24 +30,27 @@ const calculateAverages = (teamData) => {
     associatedVarValues = ['park', 'climb', 'harmony', true, 'outisde', 'middle', 'inside', true, true, true];
 
     for(let i in associatedVarNames) {
-        averages[valuesToCalc[i] + 'Percent'] = findTotalValue(qmList, associatedVarNames[i], associatedVarValues[i])/Object.keys(qmList);
+        percents[valuesToCalc[i] + 'Percent'] = findTotalValue(qmList, associatedVarNames[i], associatedVarValues[i])/Object.keys(qmList);
     }
     
-    averages.attemptedSpeakerPercent = 
+    percents.attemptedSpeakerPercent = 
     (totals.autoSpeakerNotes + totals.autoFailedSpeakerNotes + totals.teleopSpeakerNotes + totals.teleopFailedSpeakerNotes)/
     (totals.autoSpeakerNotes + totals.autoAmpNotes + totals.autoFailedSpeakerNotes + totals.autoFailedAmpNotes + totals.teleopSpeakerNotes + totals.teleopAmpNotes + totals.teleopFailedSpeakerNotes + totals.teleopFailedAmpNotes);
 
-    averages.attemptedAmpPercent =
+    percents.attemptedAmpPercent =
     (totals.autoAmpNotes + totals.autoFailedAmpNotes + totals.teleopAmpNotes + totals.teleopFailedAmpNotes)/
     (totals.autoSpeakerNotes + totals.autoAmpNotes + totals.autoFailedSpeakerNotes + totals.autoFailedAmpNotes + totals.teleopSpeakerNotes + totals.teleopAmpNotes + totals.teleopFailedSpeakerNotes + totals.teleopFailedAmpNotes); 
 
-    averages.accurateSpeakerPercent = (totals.autoSpeakerNotes + totals.teleopSpeakerNotes)/
+    percents.accurateSpeakerPercent = (totals.autoSpeakerNotes + totals.teleopSpeakerNotes)/
     (totals.autoSpeakerNotes + totals.autoFailedSpeakerNotes + totals.teleopSpeakerNotes + totals.teleopFailedSpeakerNotes);
 
-    averages.accurateAmpPercent = (totals.autoAmpNotes + totals.teleopAmpNotes)/
+    percents.accurateAmpPercent = (totals.autoAmpNotes + totals.teleopAmpNotes)/
     (totals.autoAmpNotes + totals.autoFailedAmpNotes + totals.teleopAmpNotes + totals.teleopFailedAmpNotes);
 
-    averages.accurateTrapPercent = (totals.traps)/(totals.traps + totals.failedTraps);
+    percents.groundIntakePercent = (totals.groundIntakes)/(totals.groundIntakes + totals.substationIntakes);
+    percents.substationIntakePercent = (totals.substationIntakes)/(totals.groundIntakes + totals.substationIntakes);
 
-    return averages;
+    percents.accurateTrapPercent = (totals.traps)/(totals.traps + totals.failedTraps);
+
+    return percents;
 }
