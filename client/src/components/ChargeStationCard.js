@@ -5,12 +5,12 @@ const ChargeStationCard = (props) => {
 
     return (
         <Card>
-            <Title order={3}>Charge Station</Title>
+            <Title order={3}>Stage</Title>
 
             <Grid grow  >
                 <Grid.Col span={4} >
                     <Flex justify='center'>
-                        <Title order={4} >Auto</Title>
+                        <Title order={4} >Endgame</Title>
                     </Flex>
 
                     <Table>
@@ -18,9 +18,9 @@ const ChargeStationCard = (props) => {
                         <thead>
                             <tr>
                                 <th>N/A</th>
-                                <th>Attempt</th>
-                                <th>Docked</th>
-                                <th>Engaged</th>
+                                <th>Parked</th>
+                                <th>Climb</th>
+                                <th>Harmony</th>
 
                             </tr>
                         </thead>
@@ -29,10 +29,10 @@ const ChargeStationCard = (props) => {
                                 
                                 {props.stats ? (
                                     <>
-                                    <td>{ props.stats.total.autoNoAttemptTot}</td>
-                                    <td>{props.stats.total.autoAttemptedTot }</td>
-                                    <td>{ props.stats.total.autoDockedTot}</td>
-                                    <td>{props.stats.total.autoEngaged}</td>
+                                    <td>{ props.stats.total.totalNoAttempt}</td>
+                                    <td>{props.stats.total.totalParked }</td>
+                                    <td>{ props.stats.total.totalClimb}</td>
+                                    <td>{props.stats.total.totalHarmony}</td>
                                     </>
                                 ) : (
                                     <>
@@ -52,47 +52,6 @@ const ChargeStationCard = (props) => {
 
                 </Grid.Col>
                 <Divider orientation="vertical" size='sm' />
-                <Grid.Col span={4} style={{}}>
-                    <Flex justify='center'>
-                        <Title order={4}>Endgame</Title>
-                    </Flex>
-
-                    <Table>
-
-                        <thead>
-                            <tr>
-                                <th>N/A</th>
-                                <th>Parked</th>
-                                <th>Docked</th>
-                                <th>Engaged</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            {props.stats ? (
-                                    <>
-                                    <td>{ props.stats.total.endgameNoAttemptTot}</td>
-                                    <td>{props.stats.total.endgameAttemptedTot }</td>
-                                    <td>{ props.stats.total.endgameDockedTot}</td>
-                                    <td>{props.stats.total.endgameEngaged}</td>
-                                    </>
-                                ) : (
-                                    <>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    </>
-                                    
-                                )
-                            }
-
-                            </tr>
-                        </tbody>
-
-                    </Table>
-                </Grid.Col>
             </Grid>
 
 

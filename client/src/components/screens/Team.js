@@ -28,10 +28,15 @@ const Team = (props) => {
 
   }, [number, props.event]);
 
+  console.log(props.team);
+
   useEffect(() => {
     const getTeam = async () => {
       await fetch(`https://server.palyrobotics.com/team/${props.event}/${number}`)
-        .then((response) => response.json())
+        .then((response) => {
+            response.json()
+            console.log(response)
+        })
         .then((team) => {
           setNick(team.name);
           console.log(team.stats)
@@ -46,9 +51,9 @@ const Team = (props) => {
     getTeam();
   }, [loading]);
 
-  if (loading) return (
-    <div className="container">Loading...</div>
-  );
+  // if (loading) return (
+  //   <div className="container">Loading...</div>
+  // );
 
   return ( 
     <Grid>
@@ -67,8 +72,9 @@ const Team = (props) => {
       <Grid.Col span={6}>
         <AutoCard stats={stats} matches={matches}/>
       </Grid.Col>
+
       <Grid.Col span={6}>
-        <TeleCard stats={stats} />
+        <TeleCard stats={stats} matches={matches}/>
       </Grid.Col>
 
       {/* row three */}

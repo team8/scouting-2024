@@ -10,8 +10,7 @@ const RatingCard = (props) => {
             <Table highlightOnHover>
             <thead>
                 <tr>
-                    <th>Cone Intake</th>
-                    <th>Cube Intake</th>
+                    <th>Intake</th>
                     <th>Driving</th>
                     <th>Defense</th>
                 </tr>
@@ -21,14 +20,12 @@ const RatingCard = (props) => {
                     <tr>
                         {props.stats ? (
                                     <>
-                                    <td>{ props.stats.avg.coneIntakeRatingAvg === 0 ? 'N/A' : props.stats.avg.coneIntakeRatingAvg}</td>
-                                    <td>{props.stats.avg.cubeIntakeRatingAvg === 0 ? 'N/A' :props.stats.avg.cubeIntakeRatingAvg}</td>
+                                    <td>{props.stats.avg.intakeRatingAvg === 0 ? 'N/A' :props.stats.avg.intakeRatingAvg}</td>
                                     <td>{ props.stats.avg.driverRatingAvg === 0 ? 'N/A' :props.stats.avg.driverRatingAvg}</td>
                                     <td>{props.stats.avg.defenseRatingAvg === 0 ? 'N/A' :props.stats.avg.defenseRatingAvg}</td>
                                     </>
                                 ) : (
                                     <>
-                                    <td>0</td>
                                     <td>0</td>
                                     <td>0</td>
                                     <td>0</td>

@@ -20,10 +20,11 @@ export default function App() {
     setLoading(true);
     
     const getTeams = async () => {
-      await fetch(`https://server.palyrobotics.com/event/${event}/teams`)
-      .then((response) => response.json())
+      await fetch(`https://server.palyrobotics.com/event/get-teams/${event}/`)
+      .then( (response) => response.json() )
       .then((teams) => {
         setTeams(teams);
+        console.log(teams);
       });
     }
 
