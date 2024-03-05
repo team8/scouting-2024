@@ -14,12 +14,14 @@ const findTotalValue = (qmList, varName, value) => {
     let total = 0;
 
     Object.keys(qmList).map((qm)=>{
-        
-        varName = typeof qmList[qm][varName] === "string" ? qmList[qm][varName].toLowerCase() : qmList[qm][varName]
+
+        console.log(qm)
+        console.log("varname", varName)
+        let newVarName = typeof qmList[qm][varName] === "string" ? qmList[qm][varName].toLowerCase() : qmList[qm][varName]
         value = typeof value === "string" ? value.toLowerCase() : value
-        console.log(value)
-        console.log(varName)
-        if(varName == value) {
+        console.log("value", value)
+        console.log("varname", newVarName)
+        if(newVarName == value) {
             total++
         }; 
     })
@@ -36,7 +38,7 @@ const calculatePercents = (teamData) => {
 
     additiveValuesToCalc = ['park', 'climb', 'harmony', 'mobility', 'outsideStarting', 'middleStarting', 'insideStarting', 'coopertition', 'botDied',];
     associatedVarNames = ['climbStatus', 'climbStatus', 'climbStatus', 'mobility', 'startingPosition', 'startingPosition', 'startingPosition', 'coopertition', 'died'];
-    associatedVarValues = ['park', 'climb', 'harmony', true, 'outisde', 'middle', 'inside', true, true];
+    associatedVarValues = ['park', 'climb', 'harmony', true, 'outside', 'middle', 'inside', true, true];
 
     for(let i in associatedVarNames) {
         percents[additiveValuesToCalc[i] + 'Percent'] = findTotalValue(qmList, associatedVarNames[i], associatedVarValues[i])/Object.keys(qmList).length;

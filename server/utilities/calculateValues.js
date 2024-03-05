@@ -19,11 +19,10 @@ const findValue = (qualsList, valueToFind, type) => {
     }
     else if (type == 'average' || type == 'total') {
         Object.keys(qualsList).map((qm) =>{
-
             value += qualsList[qm][valueToFind];
 
         })
-
+       
         if (type == 'average') value /= Object.keys(qualsList).length;
     }
 
