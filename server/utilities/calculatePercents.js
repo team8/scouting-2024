@@ -13,24 +13,33 @@ const findPercent = (value, allValues) => {
 const findTotalValue = (qmList, varName, value) => {
     let total = 0;
 
-    for (let i in qmList){ if(qmList[i][varName] == value) total++; }
-
+    Object.keys(qmList).map((qm)=>{
+        
+        varName = typeof qmList[qm][varName] === "string" ? qmList[qm][varName].toLowerCase() : qmList[qm][varName]
+        value = typeof value === "string" ? value.toLowerCase() : value
+        console.log(value)
+        console.log(varName)
+        if(varName == value) {
+            total++
+        }; 
+    })
+    console.log(total)
     return total;
     
 }
 
 const calculatePercents = (teamData) => {
     let percents = {};
-
+    console.log(teamData)
     let qmList = teamData.qm;
     let totals = teamData.total;
 
-    additiveValuesToCalc = ['park', 'climb', 'harmony', 'mobility', 'outsideStarting', 'middleStarting', 'insideStarting', 'coopertition', 'botDied', 'botTipped'];
-    associatedVarNames = ['climbStatus', 'climbStatus', 'climbStatus', 'mobility', 'startingPosition', 'startingPosition', 'startingPosition', 'coopertition', 'died', 'tipped'];
-    associatedVarValues = ['park', 'climb', 'harmony', true, 'outisde', 'middle', 'inside', true, true, true];
+    additiveValuesToCalc = ['park', 'climb', 'harmony', 'mobility', 'outsideStarting', 'middleStarting', 'insideStarting', 'coopertition', 'botDied',];
+    associatedVarNames = ['climbStatus', 'climbStatus', 'climbStatus', 'mobility', 'startingPosition', 'startingPosition', 'startingPosition', 'coopertition', 'died'];
+    associatedVarValues = ['park', 'climb', 'harmony', true, 'outisde', 'middle', 'inside', true, true];
 
     for(let i in associatedVarNames) {
-        percents[valuesToCalc[i] + 'Percent'] = findTotalValue(qmList, associatedVarNames[i], associatedVarValues[i])/Object.keys(qmList);
+        percents[additiveValuesToCalc[i] + 'Percent'] = findTotalValue(qmList, associatedVarNames[i], associatedVarValues[i])/Object.keys(qmList).length;
     }
     
     percents.attemptedSpeakerPercent = 
@@ -54,3 +63,5 @@ const calculatePercents = (teamData) => {
 
     return percents;
 }
+
+module.exports = {calculatePercents}

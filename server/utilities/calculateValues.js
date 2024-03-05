@@ -4,25 +4,27 @@ const capitaliseFirstLetter = (word) => {
 
 const findValue = (qualsList, valueToFind, type) => {
     let value = 0;
-    if(type == 'min') value = 99999999; //Maybe there's a better way to do this but idk lol
-    
+    if (type == 'min') value = Infinity; //Maybe there's a better way to do this but idk lol
 
-    if(type == 'min' || type == 'max')
-    for(let i = 0; i < qualsList.length; i++) {
+    if (type == 'min' || type == 'max') {
+        
+        Object.keys(qualsList).map((qm) =>{
 
-        if((type == 'min' && value > qualsList[i][valueToFind]) 
-        || (type == 'max' && value < qualsList[i][valueToFind])) value = qualsList[i][valueToFind];
 
+
+            if ((type == 'min' && value > qualsList[qm][valueToFind])
+                || (type == 'max' && value < qualsList[qm][valueToFind])) value = qualsList[qm][valueToFind];
+
+        })
     }
+    else if (type == 'average' || type == 'total') {
+        Object.keys(qualsList).map((qm) =>{
 
-    else if(type == 'average' || type == 'total') {
-        for(let i = 0; i < qualsList.length; i++) {
+            value += qualsList[qm][valueToFind];
 
-            value += qualsList[i][valueToFind];
+        })
 
-        }
-
-        if (type == 'average') value /= qualsList.length;
+        if (type == 'average') value /= Object.keys(qualsList).length;
     }
 
     else console.log('Invalid type: [' + type + '] used in findValue');
@@ -31,27 +33,29 @@ const findValue = (qualsList, valueToFind, type) => {
 }
 
 const calculateValues = (qualsList) => {
-    let cumulativeValues = {'min': {}, 'max': {}, 'average': {}, 'total': {}};
+    let cumulativeValues = { 'min': {}, 'max': {}, 'average': {}, 'total': {} };
     let valueTypes = Object.keys(cumulativeValues);
 
     let valuesToFind = [
-    'autoSpeakerNotes', 'autoAmpNotes', 'autoFailedSpeakerNotes', 'autoFailedAmpNotes',
-    'teleopSpeakerNotes', 'teleopAmpNotes', 'teleopFailedSpeakerNotes', 'teleopFailedAmpNotes',
-    'traps', 'failedTraps', 'groundIntakes', 'substationIntakes', 'pointValues', 
-    'driverRating', 'defenseRating', 'intakeRating', 'climbRating', 'died', 'tipped'];
+        'autoSpeakerNotes', 'autoAmpNotes', 'autoFailedSpeakerNotes', 'autoFailedAmpNotes',
+        'teleopSpeakerNotes', 'teleopAmpNotes', 'teleopFailedSpeakerNotes', 'teleopFailedAmpNotes',
+        'traps', 'failedTraps', 'groundIntakes', 'substationIntakes', 'pointsScored',
+        'driverRating', 'defenseRating', 'intakeRating', 'climbRating', 'died',];
 
-    for(let i = 0; i < Object.keys(valueTypes).length; i++) {
+    for (let i = 0; i < Object.keys(valueTypes).length; i++) {
         //Runs through 4 types of data to collect - min, max, average, total
 
-        for(let j = 0; j < Object.keys(valuesToFind).length; j++) {
+        for (let j = 0; j < Object.keys(valuesToFind).length; j++) {
             //This for loop runs through each value to find and runs the function findValue for each one, and then adds that value to the cumulative values
 
-            if(!(valuesToFind[j] == 'died' || valuesToFind[j] == 'tipped') || i == 3) //For died & tipped, only total should be ran
-            cumulativeValues[valueTypes[i]][valueTypes[i] + capitaliseFirstLetter(valuesToFind[j])] = findValue(qualsList, valuesToFind[j], valueTypes[i]);
-            
+            if (!(valuesToFind[j] == 'died') || i == 3) //For died & tipped, only total should be ran
+                cumulativeValues[valueTypes[i]][valuesToFind[j]] = findValue(qualsList, valuesToFind[j], valueTypes[i]);
+
         }
 
     }
 
     return cumulativeValues;
 }
+
+module.exports = { calculateValues }

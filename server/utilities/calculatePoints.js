@@ -16,3 +16,4 @@ const calculatePoints = (autoSN, autoAN, teleSN, teleAN, traps, climbStatus, mob
 
     return totalPoints;
 }
+module.exports = {calculatePoints}
