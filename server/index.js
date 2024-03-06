@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const attendance = require('./routes/attendance')
+const dataCollection = require('./routes/dataCollection')
 const event = require('./routes/event')
 
 const port = 4000
@@ -23,6 +24,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/attendance', attendance)
+
+app.use('/data-collection', dataCollection)
 app.use('/event', event)
 
 app.listen(port, () => {
