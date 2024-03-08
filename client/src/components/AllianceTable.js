@@ -10,7 +10,6 @@ const AllianceTable = (props) => {
         if (props) {
             setRed(props.red);
             setBlue(props.blue);
-            console.log(props.blue)
         }
     }, [props]);
     

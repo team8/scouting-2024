@@ -18,7 +18,6 @@ const NotesCard = (props) => {
                     "key": i
                 }));
             }
-            console.log(row)
             setRows(row);
         }
     }, [props]);

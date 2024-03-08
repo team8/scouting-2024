@@ -39,12 +39,10 @@ const BarChart = ({ team, event }) => {
           let array2 = [];
           let array3 = [];
           for (var i in matches) {
-              await fetch(`http://localhost:4000/team/${event}/${team}/${matches[i]}`)
+              await fetch(`https://server.palyrobotics.com/team/${event}/${team}/${matches[i]}`)
                   .then((response) => response.json())
                   .then((json) => {
                       const data = json || {}
-                      console.log('herre')
-                      console.log(data)
                       if (typeof(data.autoPts) !== "undefined") {
                         array1.push(data.autoPts);
                         array2.push(data.telePts);

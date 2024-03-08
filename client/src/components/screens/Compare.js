@@ -45,7 +45,7 @@ const Compare = (props) => {
             const getStats = async () => {
                 let array = [];
                 for (var i in teams) {
-                    await fetch(`http://localhost:4000/team/${props.event}/${teams[i]}`, { headers: { "X-TBA-Auth-Key": "fLKsnM61nLrIA7CDpmFybAXvRYFeCQbIRrPYm5sKSSrs77vsUhL2whnLIHizc3iU" }})
+                    await fetch(`https://server.palyrobotics.com/team/${props.event}/${teams[i]}`, { headers: { "X-TBA-Auth-Key": "fLKsnM61nLrIA7CDpmFybAXvRYFeCQbIRrPYm5sKSSrs77vsUhL2whnLIHizc3iU" }})
                         .then((response) => response.json())
                         .then((data) => {
                             array.push({
@@ -58,7 +58,6 @@ const Compare = (props) => {
             }
 
             let local = await getStats();
-            console.log(local)
             setStats(local);
             setLoading(false);
         }

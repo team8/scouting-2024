@@ -43,7 +43,7 @@ const AutoCard = (props) => {
             </Table>
 
             <Space h="md" />
-            <AutoModal matches={props.matches} />
+            {/* <AutoModal matches={props.matches} /> */}
 
         </Card>
     )

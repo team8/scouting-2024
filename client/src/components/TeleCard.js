@@ -9,7 +9,6 @@ const TeleCard = (props) => {
 
     useEffect(() => {
         if (props.stats) {
-            console.log(props.stats.avg)
             setAmp(props.stats.avg.teleopAmpNotes)
             setSpeaker(props.stats.avg.teleopSpeakerNotes)
             setRobotDied(props.stats.total.died)
@@ -48,7 +47,7 @@ const TeleCard = (props) => {
                 <Text><b>{`Robot died total: ${robotDied}`}</b></Text>
 
                 <Space h="md" />
-                <TeleModal matches={props.matches} />
+                {/* <TeleModal matches={props.matches} /> */}
             </Card>
         )
     

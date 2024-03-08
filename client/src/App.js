@@ -25,7 +25,7 @@ export default function App() {
     
     const getTeams = async () => {
       console.log(event)
-      await fetch(`http://localhost:4000/event/get-teams/${event}/`)
+      await fetch(`https://server.palyrobotics.com/event/get-teams/${event}/`)
       .then( (response) => response.json() )
       .then((teams) => {
         setTeams(teams);

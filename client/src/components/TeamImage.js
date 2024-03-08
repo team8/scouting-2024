@@ -5,7 +5,6 @@ const TeamImage = (props) => {
     const [id, setId] = useState();
 
     useEffect(() => {
-        console.log(props)
         if (props.image) {
             let local = props.image.substring(33);
             setId(local);

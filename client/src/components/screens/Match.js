@@ -38,7 +38,7 @@ const Match = (props) => {
             const setTeams = async (teams) => {
                 let array = [];
                 for (var i in teams) {
-                    await fetch(`http://localhost:4000/team/${props.event}/${teams[i].replace(/frc/g, '')}/${number}`)
+                    await fetch(`https://server.palyrobotics.com/team/${props.event}/${teams[i].replace(/frc/g, '')}/${number}`)
                         .then((response) => response.json())
                         .then((data) => {
                             array.push(Object.assign({}, data));
@@ -50,21 +50,16 @@ const Match = (props) => {
             const setStats = async (teams) => {
                 let array = [];
                 for (var i in teams) {
-                    console.log(`http://localhost:4000/team/${props.event}/${teams[i].replace(/frc/g, '')}`)
-                    await fetch(`http://localhost:4000/team/${props.event}/${teams[i].replace(/frc/g, '')}`)
+                    await fetch(`https://server.palyrobotics.com/team/${props.event}/${teams[i].replace(/frc/g, '')}`)
                         .then((response) => response.json())
                         .then((data) => {
-                            console.log(data)
                             array.push(Object.assign({}, data));
                         })
                 }
-                console.log(JSON.stringify(array))
                 return array;
             }
 
             if (blue) {
-                console.log("hehehehehehehe")
-                console.log(red)
                 let redArray = await setTeams(red);
                 let blueArray = await setTeams(blue);
 

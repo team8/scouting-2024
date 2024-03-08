@@ -2,7 +2,6 @@ import { Card, Divider, Text, Title, Group, Center, Table, Grid, Flex, Space } f
 import { useEffect, useState } from 'react';
 
 const RatingCard = (props) => {
-    console.log(props)
     return (
         <Card>
            <Title order={3}>Avg Ratings</Title>
