@@ -4,6 +4,7 @@ const capitaliseFirstLetter = (word) => {
 
 const findValue = (qualsList, valueToFind, type) => {
     let value = 0;
+
     if (type == 'min') value = Infinity; //Maybe there's a better way to do this but idk lol
 
     if (type == 'min' || type == 'max') {
@@ -19,15 +20,16 @@ const findValue = (qualsList, valueToFind, type) => {
     }
     else if (type == 'average' || type == 'total') {
         Object.keys(qualsList).map((qm) =>{
-            value += qualsList[qm][valueToFind];
 
+            if (qualsList[qm][valueToFind]){
+            value += qualsList[qm][valueToFind];
+}
         })
        
         if (type == 'average') value /= Object.keys(qualsList).length;
     }
 
     else console.log('Invalid type: [' + type + '] used in findValue');
-
     return value;
 }
 
@@ -39,7 +41,7 @@ const calculateValues = (qualsList) => {
         'autoSpeakerNotes', 'autoAmpNotes', 'autoFailedSpeakerNotes', 'autoFailedAmpNotes',
         'teleopSpeakerNotes', 'teleopAmpNotes', 'teleopFailedSpeakerNotes', 'teleopFailedAmpNotes',
         'traps', 'failedTraps', 'groundIntakes', 'substationIntakes', 'pointsScored',
-        'driverRating', 'defenseRating', 'intakeRating', 'climbRating', 'died',];
+        'driverRating', 'defenseRating', 'intakeRating', 'climbRating', 'died', 'autoPoints', 'teleopPoints', 'endgamePoints'];
 
     for (let i = 0; i < Object.keys(valueTypes).length; i++) {
         //Runs through 4 types of data to collect - min, max, average, total
@@ -53,7 +55,7 @@ const calculateValues = (qualsList) => {
         }
 
     }
-
+    console.log(cumulativeValues)
     return cumulativeValues;
 }
 

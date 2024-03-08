@@ -1,19 +1,27 @@
 const calculatePoints = (autoSN, autoAN, teleSN, teleAN, traps, climbStatus, mobility) => {
-    let totalPoints = 0;
+    let autoPoints = 0
+    let teleopPoints = 0
+    let endgamePoints = 0
 
-    if (mobility) totalPoints += 2;
-    if (traps > 0) totalPoints += 5;
-    totalPoints += teleAN;
-    totalPoints += (autoAN + teleSN) * 2;
-    totalPoints += autoSN * 5;
+    if (mobility) autoPoints += 2;
+    if (traps > 0) autoPoints += 5;
+    autoPoints += autoAN * 2;
+    autoPoints += autoSN * 5;
+
+    teleopPoints += teleSN * 2
+    teleopPoints += teleAN;
+
+
 
     if(climbStatus == 'Parked') 
-    totalPoints += 1;
+    endgamePoints += 1;
     else if(climbStatus == 'Climb')
-    totalPoints += 3; //Spotlighting is not scouted
+    endgamePoints += 3; //Spotlighting is not scouted
     else if(climbStatus == 'Harmony')
-    totalPoints += 3 + 2;
+    endgamePoints += 3 + 2;
 
-    return totalPoints;
+    
+
+    return [autoPoints, teleopPoints, endgamePoints];
 }
 module.exports = {calculatePoints}

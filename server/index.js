@@ -6,6 +6,8 @@ const cors = require('cors');
 const attendance = require('./routes/attendance')
 const dataCollection = require('./routes/dataCollection')
 const event = require('./routes/event')
+const team = require('./routes/team')
+
 
 const port = 4000
 
@@ -27,6 +29,7 @@ app.use('/attendance', attendance)
 
 app.use('/data-collection', dataCollection)
 app.use('/event', event)
+app.use('/team', team);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

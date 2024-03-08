@@ -15,7 +15,7 @@ const BarChart = ({ team, event }) => {
     setLoading(true);
     
     const getMatches = async () => {
-      await fetch(`https://www.thebluealliance.com/api/v3/team/frc${team}/event/${event}/matches`, { headers: { "X-TBA-Auth-Key": `oSSXMWPE2jOJrLTYpgMvgP5BTvbtOJRwR6LSv1ytb0g5FS6RlaWBx70Pw0B8cwvA` }})
+      await fetch(`https://www.thebluealliance.com/api/v3/team/frc${team}/event/${event}/matches`, { headers: { "X-TBA-Auth-Key": `fLKsnM61nLrIA7CDpmFybAXvRYFeCQbIRrPYm5sKSSrs77vsUhL2whnLIHizc3iU` }})
         .then((response) => response.json())
         .then((data) => {
           let matchList = [];
@@ -39,7 +39,7 @@ const BarChart = ({ team, event }) => {
           let array2 = [];
           let array3 = [];
           for (var i in matches) {
-              await fetch(`https://server.palyrobotics.com/team/${event}/${team}/${matches[i]}`)
+              await fetch(`http://localhost:4000/team/${event}/${team}/${matches[i]}`)
                   .then((response) => response.json())
                   .then((json) => {
                       const data = json || {}

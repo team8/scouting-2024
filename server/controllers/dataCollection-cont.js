@@ -44,18 +44,31 @@ const addData = async (req, res, next) => {
 
 
 
-    matchData.pointsScored = calculatePoints(matchData.autoSpeakerNotes, matchData.autoAmpNotes, matchData.teleopSpeakerNotes, matchData.teleopAmpNotes, matchData.traps, matchData.climbStatus, matchData.mobility);
+    let points = calculatePoints(matchData.autoSpeakerNotes, matchData.autoAmpNotes, matchData.teleopSpeakerNotes, matchData.teleopAmpNotes, matchData.traps, matchData.climbStatus, matchData.mobility);
+    matchData.autoPoints = points[0]
+    matchData.teleopPoints = points[1]
+    matchData.endgamePoints = points[2]
+    matchData.pointsScored = points[0]+points[1]+points[2]
+
 
 
     console.log(matchData)
+    const matchNo = data.match.slice(1)
 
-    await set(ref(firebase, `/scouting-data/${event}/${data.team}/qm/${data.match}`), matchData).then(async (i)=>{
-        
-        let cumulativeValues = calculateValues(scoutingData[event][data.team]['qm']);
+    await set(ref(firebase, `/scouting-data/${event}/${data.team}/qm/${matchNo}`), matchData).then(async (i)=>{
+        let qualList = {}
+        Object.keys(scoutingData[event][data.team]['qm']).map((qual)=>{
+            if (!scoutingData[event][data.team]['qm'][qual]["-"]){
+                qualList[qual] = scoutingData[event][data.team]['qm'][qual]
+            }
+        })
+        let cumulativeValues = calculateValues(qualList);
+        console.log(data)
         await set(ref(firebase, `/scouting-data/${event}/${data.team}/min/`), cumulativeValues["min"]);
         await set(ref(firebase, `/scouting-data/${event}/${data.team}/max/`), cumulativeValues["max"]);
         await set(ref(firebase, `/scouting-data/${event}/${data.team}/average/`), cumulativeValues["average"]);
         await set(ref(firebase, `/scouting-data/${event}/${data.team}/total/`), cumulativeValues["total"]);
+        console.log("here")
 
         
         

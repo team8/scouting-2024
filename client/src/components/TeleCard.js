@@ -9,9 +9,10 @@ const TeleCard = (props) => {
 
     useEffect(() => {
         if (props.stats) {
-            setAmp(props.stats.avg.teleopAmp)
-            setSpeaker(props.stats.avg.teleopSpeaker)
-            setRobotDied(props.stats.total.diedTotal)
+            console.log(props.stats.avg)
+            setAmp(props.stats.avg.teleopAmpNotes)
+            setSpeaker(props.stats.avg.teleopSpeakerNotes)
+            setRobotDied(props.stats.total.died)
         }
     }, [props]);
 

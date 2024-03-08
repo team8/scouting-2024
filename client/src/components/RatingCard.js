@@ -13,6 +13,7 @@ const RatingCard = (props) => {
                     <th>Intake</th>
                     <th>Driving</th>
                     <th>Defense</th>
+                    <th>Climb</th>
                 </tr>
             </thead>
             <tbody>{
@@ -20,9 +21,11 @@ const RatingCard = (props) => {
                     <tr>
                         {props.stats ? (
                                     <>
-                                    <td>{props.stats.avg.intakeRatingAvg === 0 ? 'N/A' :props.stats.avg.intakeRatingAvg}</td>
-                                    <td>{ props.stats.avg.driverRatingAvg === 0 ? 'N/A' :props.stats.avg.driverRatingAvg}</td>
-                                    <td>{props.stats.avg.defenseRatingAvg === 0 ? 'N/A' :props.stats.avg.defenseRatingAvg}</td>
+                                    <td>{props.stats.avg.intakeRating === 0 ? 'N/A' :props.stats.avg.intakeRating}</td>
+                                    <td>{ props.stats.avg.driverRating === 0 ? 'N/A' :props.stats.avg.driverRating}</td>
+                                    <td>{props.stats.avg.defenseRating === 0 ? 'N/A' :props.stats.avg.defenseRating}</td>
+                                    <td>{props.stats.avg.climbRating === 0 ? 'N/A' :props.stats.avg.climbRating}</td>
+
                                     </>
                                 ) : (
                                     <>

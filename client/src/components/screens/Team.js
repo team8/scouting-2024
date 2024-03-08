@@ -28,24 +28,41 @@ const Team = (props) => {
 
   }, [number, props.event]);
 
-  console.log(props.team);
+  console.log(number);
 
   useEffect(() => {
     const getTeam = async () => {
-      await fetch(`https://server.palyrobotics.com/team/${props.event}/${number}`)
-        .then((response) => {
-            response.json()
-            console.log(response)
-        })
-        .then((team) => {
-          setNick(team.name);
-          console.log(team.stats)
-          setStats(team.stats);
+      console.log(`http://localhost:4000/team/${props.event}/${number}`)
+      // await fetch(`http://localhost:4000/team/${props.event}/${number}`)
+      //   .then((response) => {
+         
+      //       response.text()
+      //   })
+      //   .then((data) => {
+      //     console.log(data)
+      //     const team = JSON.parse(data)
+      //     console.log(team)
+      //     setNick(team.name);
+      //     console.log(team.stats)
+      //     setStats(team.stats);
           
-          setMatches(team.qm);
-          setImage(team.pit.robotImage);
+      //     setMatches(team.qm);
+      //     setImage((team.pit || {}).robotImage);
 
-      });
+      // });
+      fetch(`http://localhost:4000/team/${props.event}/${number}`)
+  .then((response) => response.text())
+  .then((data) => {
+    console.log(data)
+    const team = JSON.parse(data)
+    console.log(team)
+    setNick(team.name);
+    setStats({"avg": team.average, "max": team.max, "min": team.min, "total": team.total});
+    
+    setMatches(team.qm);
+    setImage((team.pit || {}).robotImage);
+  })
+  .catch((error) => console.error(error));
     }
 
     getTeam();

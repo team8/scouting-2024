@@ -8,7 +8,6 @@ const AppNavbar = (props) => {
     const [opened, setOpened] = useState(false);
     const [active, setActive] = useState("Teams");
     const navigate = useNavigate();
-    console.log(props.teams)
 
     return (
         <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 250 }}>

@@ -15,24 +15,20 @@ const findTotalValue = (qmList, varName, value) => {
 
     Object.keys(qmList).map((qm)=>{
 
-        console.log(qm)
-        console.log("varname", varName)
+       
         let newVarName = typeof qmList[qm][varName] === "string" ? qmList[qm][varName].toLowerCase() : qmList[qm][varName]
         value = typeof value === "string" ? value.toLowerCase() : value
-        console.log("value", value)
-        console.log("varname", newVarName)
+       
         if(newVarName == value) {
             total++
         }; 
     })
-    console.log(total)
     return total;
     
 }
 
 const calculatePercents = (teamData) => {
     let percents = {};
-    console.log(teamData)
     let qmList = teamData.qm;
     let totals = teamData.total;
 
@@ -62,7 +58,6 @@ const calculatePercents = (teamData) => {
     percents.substationIntakePercent = (totals.substationIntakes)/(totals.groundIntakes + totals.substationIntakes);
 
     percents.accurateTrapPercent = (totals.traps)/(totals.traps + totals.failedTraps);
-
     return percents;
 }
 

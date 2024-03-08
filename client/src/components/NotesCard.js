@@ -13,11 +13,12 @@ const NotesCard = (props) => {
                 row.push(Object.create({
                     "match": array[i][0],
                     "notes": array[i][1].notes?.replace(/[<>]/g, ' '),
-                    "charge": array[i][1].chargeNotes?.replace(/[<>]/g, ' '),
+                    "charge": array[i][1].climbNotes?.replace(/[<>]/g, ' '),
                     "scouter": array[i][1].scouter,
                     "key": i
                 }));
             }
+            console.log(row)
             setRows(row);
         }
     }, [props]);

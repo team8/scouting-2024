@@ -9,8 +9,8 @@ const AutoCard = (props) => {
 
     useEffect(() => {
         if (props.stats) {
-            setAmp(props.stats.avg.autoAmp)
-            setSpeaker(props.stats.avg.autoSpeaker)
+            setAmp(props.stats.avg.autoAmpNotes)
+            setSpeaker(props.stats.avg.autoSpeakerNotes)
         }
     }, [props]);
 

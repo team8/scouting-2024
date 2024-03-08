@@ -2,6 +2,9 @@ import { Card, Divider, Text, Title, Group, Center, Table, Grid, Flex } from '@m
 import { useEffect, useState } from 'react';
 
 const ChargeStationCard = (props) => {
+    useEffect(()=>{
+        console.log(props.stats.total)
+    })
 
     return (
         <Card>
@@ -30,7 +33,7 @@ const ChargeStationCard = (props) => {
                                 {props.stats ? (
                                     <>
                                     <td>{ props.stats.total.totalNoAttempt}</td>
-                                    <td>{props.stats.total.totalParked }</td>
+                                    <td>{props.stats.total.parked }</td>
                                     <td>{ props.stats.total.totalClimb}</td>
                                     <td>{props.stats.total.totalHarmony}</td>
                                     </>

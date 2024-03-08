@@ -151,8 +151,7 @@ this function extracts the booleans, numbers, and arrays
 from this format and fixes the object
 */
 const correctValueTypes = (object) => {
-    console.log("Pre correction:")
-    console.log(object)
+  
     for (var [key, value] of Object.entries(object)) {
 
         // fix for booleans
@@ -172,8 +171,7 @@ const correctValueTypes = (object) => {
         // fix for arrays
         if (value.includes("[")) {
             let array = parseStringArray(value);
-            console.log("Post correction: ")
-            console.log(array)
+         
             object[key] = array;
         }
     }

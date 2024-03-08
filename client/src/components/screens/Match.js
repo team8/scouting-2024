@@ -22,9 +22,10 @@ const Match = (props) => {
 
     useEffect(() => {
         const getTeams = async () => {
-            await fetch(`https://www.thebluealliance.com/api/v3/match/${props.event}_qm${number}/simple`, { headers: { "X-TBA-Auth-Key": "oSSXMWPE2jOJrLTYpgMvgP5BTvbtOJRwR6LSv1ytb0g5FS6RlaWBx70Pw0B8cwvA" }})
+            await fetch(`https://www.thebluealliance.com/api/v3/match/${props.event}_qm${number}/simple`, { headers: { "X-TBA-Auth-Key": "fLKsnM61nLrIA7CDpmFybAXvRYFeCQbIRrPYm5sKSSrs77vsUhL2whnLIHizc3iU" }})
                 .then((response) => response.json())
                 .then((data) => {
+                    
                     setRed(data.alliances.red.team_keys);
                     setBlue(data.alliances.blue.team_keys);
                 }); 
@@ -37,7 +38,7 @@ const Match = (props) => {
             const setTeams = async (teams) => {
                 let array = [];
                 for (var i in teams) {
-                    await fetch(`https://server.palyrobotics.com/team/${props.event}/${teams[i].replace(/frc/g, '')}/${number}`)
+                    await fetch(`http://localhost:4000/team/${props.event}/${teams[i].replace(/frc/g, '')}/${number}`)
                         .then((response) => response.json())
                         .then((data) => {
                             array.push(Object.assign({}, data));
@@ -49,16 +50,21 @@ const Match = (props) => {
             const setStats = async (teams) => {
                 let array = [];
                 for (var i in teams) {
-                    await fetch(`https://server.palyrobotics.com/team/${props.event}/${teams[i].replace(/frc/g, '')}`)
+                    console.log(`http://localhost:4000/team/${props.event}/${teams[i].replace(/frc/g, '')}`)
+                    await fetch(`http://localhost:4000/team/${props.event}/${teams[i].replace(/frc/g, '')}`)
                         .then((response) => response.json())
                         .then((data) => {
+                            console.log(data)
                             array.push(Object.assign({}, data));
                         })
                 }
+                console.log(JSON.stringify(array))
                 return array;
             }
 
             if (blue) {
+                console.log("hehehehehehehe")
+                console.log(red)
                 let redArray = await setTeams(red);
                 let blueArray = await setTeams(blue);
 
@@ -116,7 +122,7 @@ const Match = (props) => {
                             <>
                                 <Card>
                                     <Title order={4}>{`${team.name} - ${red[key].replace("frc", "")}`}</Title>
-                                    <TeamImage image={team.pit.robotImage} />
+                                    <TeamImage image={(team.pit || {}).robotImage} />
                                 </Card>
                             </>
                         ))
@@ -128,7 +134,7 @@ const Match = (props) => {
                             <>
                                 <Card>
                                     <Title order={4}>{`${team.name} - ${blue[key].replace("frc", "")}`}</Title>
-                                    <TeamImage image={team.pit.robotImage} />
+                                    <TeamImage image={(team.pit || {}).robotImage} />
                                 </Card>
                             </>
                         ))

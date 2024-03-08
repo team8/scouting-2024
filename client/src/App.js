@@ -10,17 +10,22 @@ import Compare from './components/screens/Compare';
 
 export default function App() {
   const theme = useMantineTheme();
+  const defaultValue = "2024cave"
 
-  const [event, setEvent] = useState("2023idbo");
+
+  const [event, setEvent] = useState(defaultValue);
   const [loading, setLoading] = useState(true);
   const [teams, setTeams] = useState([]);
   const [matches, setMatches] = useState([]);
+
+
   
   useEffect(() => {
     setLoading(true);
     
     const getTeams = async () => {
-      await fetch(`https://server.palyrobotics.com/event/get-teams/${event}/`)
+      console.log(event)
+      await fetch(`http://localhost:4000/event/get-teams/${event}/`)
       .then( (response) => response.json() )
       .then((teams) => {
         setTeams(teams);
@@ -29,7 +34,7 @@ export default function App() {
     }
 
     const getMatches = async () => {
-      await fetch(`https://www.thebluealliance.com/api/v3/event/${event}/matches`, { headers: { "X-TBA-Auth-Key": "oSSXMWPE2jOJrLTYpgMvgP5BTvbtOJRwR6LSv1ytb0g5FS6RlaWBx70Pw0B8cwvA" }})
+      await fetch(`https://www.thebluealliance.com/api/v3/event/${event}/matches`, { headers: { "X-TBA-Auth-Key": "fLKsnM61nLrIA7CDpmFybAXvRYFeCQbIRrPYm5sKSSrs77vsUhL2whnLIHizc3iU" }})
         .then((response) => response.json())
         .then((data) => {
           let matchList = [];
@@ -67,7 +72,7 @@ export default function App() {
       //   </Footer>
       // }
       header={
-        <AppHeader set={setEvent} />
+        <AppHeader defaultValue={defaultValue} setEvent={setEvent} />
       }
     >
       <Suspense fallback={<div className="container">Loading...</div>}>
