@@ -8,8 +8,6 @@ const TBA_BASE = 'https://www.thebluealliance.com/api/v3';
 
 async function getEventData(eventKey) {
     try {
-        console.log(`${TBA_BASE}/event/${eventKey}/teams/simple`)
-        console.log(TBA_KEY)
         const response = await axios.get(`${TBA_BASE}/event/${eventKey}/teams/simple`, { headers: { "X-TBA-Auth-Key": TBA_KEY } });
         const res = await response.data;
 

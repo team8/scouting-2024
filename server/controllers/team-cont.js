@@ -8,10 +8,8 @@ const get_team = async (req, res) => {
     try {
         const event = req.params.event;
         const team = req.params.team;
-        console.log(event, team)
         await onValue(ref(firebase, `scouting-data/${event}/${team}`), (snapshot) => {
             const data = snapshot.val();
-            console.log(data)
             res.send(data);
         }, { onlyOnce: true });
     } catch (error) {

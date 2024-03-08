@@ -25,13 +25,11 @@ const getTeams = async (req, res, next) => {
         fetch(`https://www.thebluealliance.com/api/v3/event/${eventKey}/teams`, requestOptions)
             .then((response) => response.text())
             .then((result) => {
-                console.log(result);
                 const data = JSON.parse(result)
 
                 data.map((team) => {
                     teams.push(team.team_number)
                 })
-                console.log(teams)
                 res.send(teams)
             })
             .catch((error) => console.error(error));
@@ -54,7 +52,7 @@ const initializeEvent = async (req, res, next) => {
             eventData[i].matches.forEach(match => {
                 matches[match] = { "-": "-" };
             });
-            teamData[eventData[i].team] = {...teamModel, qm: matches, pit: pitModel};
+            teamData[eventData[i].team] = {...teamModel, qm: matches, pit: pitModel, name: eventData[i].name};
         }
         await set(ref(firebase, `/scouting-data/${eventKey}`), teamData).then(() => {
             res.send('Initialized event successfully');

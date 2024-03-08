@@ -29,7 +29,6 @@ const idEntered = async (req, res, next) => {
     }
     const id = req.params.id
     var name = ''
-    console.log('entered')
 
 
     for (i in attendance.studentData) {
@@ -48,7 +47,6 @@ const idEntered = async (req, res, next) => {
 
     if (Object.keys(loggedInUsers || {}).includes(id)) {
         timeElapsed = Date.now() - loggedInUsers[id]
-        console.log(timeElapsed)
 
         if (timeElapsed / 3600000 < 10) {
             if (((attendance || {})[id] || {}).hours) {
@@ -85,7 +83,6 @@ const checkPassword = (req, res, next) => {
 const getStudentData = (req, res, next) => {
     const mode = req.params.mode
     const selector = req.params.selector
-    console.log(mode)
     try {
         if (mode === "id") {
             const id = selector
@@ -99,10 +96,8 @@ const getStudentData = (req, res, next) => {
             res.send("id not found")
         } else {
             const name = selector.toLowerCase()
-            console.log(name)
             
             Object.keys(attendance).map((i) => {
-                console.log(attendance[i].fullName)
                 if ((attendance[i].fullName || 'none').toLowerCase() === name) {
                     res.send(attendance[i])
                     return
@@ -112,7 +107,6 @@ const getStudentData = (req, res, next) => {
             res.send("name not found")
         }
     } catch(e) {
-        console.log(e.message)
         res.send("error")
     }
 
@@ -167,7 +161,6 @@ const correctStudentData = async (req, res, next) => {
 
 const getHours = async (req, res, next) => {
     var hours = 0
-    console.log(req.body.user_id)
     var name = ""
     await fetch('https://slack.com/api/users.info?user=' + req.body.user_id, {
         headers: {
@@ -182,7 +175,6 @@ const getHours = async (req, res, next) => {
         data => {
             data = JSON.parse(data)
             try {
-                console.log(data)
                 name = data.user.profile.real_name
             } catch (e) {
                 console.log(e.message)

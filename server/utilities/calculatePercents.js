@@ -29,7 +29,13 @@ const findTotalValue = (qmList, varName, value) => {
 
 const calculatePercents = (teamData) => {
     let percents = {};
-    let qmList = teamData.qm;
+    let qmList = {};
+ 
+    Object.keys(teamData.qm).map((qual)=>{
+        if (!teamData.qm[qual]["-"]){
+            qmList[qual] = teamData.qm[qual]
+        }
+    })
     let totals = teamData.total;
 
     additiveValuesToCalc = ['park', 'climb', 'harmony', 'mobility', 'outsideStarting', 'middleStarting', 'insideStarting', 'coopertition', 'botDied',];

@@ -55,7 +55,6 @@ const calculateValues = (qualsList) => {
         }
 
     }
-    console.log(cumulativeValues)
     return cumulativeValues;
 }
 
