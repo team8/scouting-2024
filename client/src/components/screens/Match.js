@@ -81,24 +81,24 @@ const Match = (props) => {
         <div className="container">Loading...</div>
     );
     
-    if (blues && typeof(blues[0].team) !== 'undefined') {
-        return (
-            <Card>
-                <Title order={3}>Qual {number}</Title>
-                <Space h="md" />
-                <Grid>
-                    <Grid.Col span={12}>
-                        <AllianceTable red={reds} blue={blues} />
-                    </Grid.Col>
-                </Grid>
-            </Card>        
-        );
-    } else {
+    // if (blues && typeof(blues[0].team) !== 'undefined') {
+    //     return (
+    //         <Card>
+    //             <Title order={3}>Qual {number}</Title>
+    //             <Space h="md" />
+    //             <Grid>
+    //                 <Grid.Col span={12}>
+    //                     <AllianceTable red={reds} blue={blues} />
+    //                 </Grid.Col>
+    //             </Grid>
+    //         </Card>        
+    //     );
+    // } else {
         return (
             <Grid>
                 <Grid.Col span={12} >
                     <Card>
-                        <Title order={3}>Prediction</Title>
+                        <Title order={3}>QM {number}</Title>
                         <Space h="md" />
                         <Grid>
                             <Grid.Col span={6}>
@@ -136,7 +136,7 @@ const Match = (props) => {
                 </Grid.Col>
             </Grid>
         );
-    }
+    // }
 }
 
 export default Match;
