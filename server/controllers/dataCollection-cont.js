@@ -18,9 +18,11 @@ onValue(ref(firebase, `/scouting-data`), (snapshot) => {
 
 const addData = async (req, res, next) => {
     try{
+    
     const data = renameKeys(correctValueTypes(stringToJSON(req.body.raw)));
     
     let matchData = data;
+    console.log(matchData)
 
     
     const event = matchData.event.slice(0, 8)
@@ -34,8 +36,12 @@ const addData = async (req, res, next) => {
 
     matchData.averageRating = (parseFloat(matchData.driverRating) + parseFloat(matchData.defenseRating) + parseFloat(matchData.intakeRating) + parseFloat(matchData.climbRating))/4;
     matchData.speakerAccuracy = (totalSpeakerNotes)/(allAttemptedSpeakerNotes);
-    matchData.ampAccuracy = (totalAmpNotes)/(allAttemptedAmpNotes);
-    matchData.trapAccuracy = (matchData.traps)/(matchData.traps + matchData.failedTraps);
+    console.log(totalAmpNotes)
+    console.log(allAttemptedAmpNotes)
+    console.log(matchData.traps)
+    console.log(matchData.failedTraps)
+    matchData.ampAccuracy = ((totalAmpNotes)/(allAttemptedAmpNotes) || 0);
+    matchData.trapAccuracy = (matchData.traps)/(matchData.traps + matchData.failedTraps) || 0;
     //matchData.percentGroundIntake (i forgor to add it to collection app)
     //matchData.percentSourceIntake (that's the substation)
     matchData.attemptedSpeakerPercent = (allAttemptedSpeakerNotes)/(allAttemptedSpeakerNotes + allAttemptedAmpNotes);
@@ -49,12 +55,24 @@ const addData = async (req, res, next) => {
     matchData.endgamePoints = points[2]
     matchData.pointsScored = points[0]+points[1]+points[2]
 
-
+    console.log(matchData)
 
     const matchNo = data.match.slice(1)
-
+    console.log("jhello")
+    console.log(event)
+    console.log(data.team)
+    console.log(matchNo)
+    
+    Object.keys(matchData).map((key)=> {
+        if (isNaN(matchData[key])){
+            matchData[key] = 0
+        }
+    })
     await set(ref(firebase, `/scouting-data/${event}/${data.team}/qm/${matchNo}`), matchData).then(async (i)=>{
+    console.log("yello")
+
         let qualList = {}
+
         Object.keys(scoutingData[event][data.team]['qm']).map((qual)=>{
             if (!scoutingData[event][data.team]['qm'][qual]["-"]){
                 qualList[qual] = scoutingData[event][data.team]['qm'][qual]
@@ -81,6 +99,7 @@ const addData = async (req, res, next) => {
     return;
 }
 catch(e){
+    console.log(e.message)
     res.send(e.message)
 }
 }
