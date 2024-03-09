@@ -25,10 +25,9 @@ const Match = (props) => {
             await fetch(`https://www.thebluealliance.com/api/v3/match/${props.event}_qm${number}/simple`, { headers: { "X-TBA-Auth-Key": "fLKsnM61nLrIA7CDpmFybAXvRYFeCQbIRrPYm5sKSSrs77vsUhL2whnLIHizc3iU" }})
                 .then((response) => response.json())
                 .then((data) => {
-                    
                     setRed(data.alliances.red.team_keys);
                     setBlue(data.alliances.blue.team_keys);
-                }); 
+                });
         }
         getTeams();
     }, [loading]);
