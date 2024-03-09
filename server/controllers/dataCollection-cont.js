@@ -36,10 +36,7 @@ const addData = async (req, res, next) => {
 
     matchData.averageRating = (parseFloat(matchData.driverRating) + parseFloat(matchData.defenseRating) + parseFloat(matchData.intakeRating) + parseFloat(matchData.climbRating))/4;
     matchData.speakerAccuracy = (totalSpeakerNotes)/(allAttemptedSpeakerNotes);
-    console.log(totalAmpNotes)
-    console.log(allAttemptedAmpNotes)
-    console.log(matchData.traps)
-    console.log(matchData.failedTraps)
+    
     matchData.ampAccuracy = ((totalAmpNotes)/(allAttemptedAmpNotes) || 0);
     matchData.trapAccuracy = (matchData.traps)/(matchData.traps + matchData.failedTraps) || 0;
     //matchData.percentGroundIntake (i forgor to add it to collection app)
@@ -64,11 +61,9 @@ const addData = async (req, res, next) => {
     console.log(matchNo)
     
     Object.keys(matchData).map((key)=> {
-        console.log(matchData[key])
         if (isNaN(matchData[key])){
             matchData[key] = 0
         }
-        console.log(matchData[key])
         
     })
     await set(ref(firebase, `/scouting-data/${event}/${data.team}/qm/${matchNo}`), matchData).then(async (i)=>{
