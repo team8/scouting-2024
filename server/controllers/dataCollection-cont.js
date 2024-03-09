@@ -61,7 +61,8 @@ const addData = async (req, res, next) => {
     console.log(matchNo)
     
     Object.keys(matchData).map((key)=> {
-        if (isNaN(matchData[key])){
+
+        if (Number.isNaN(matchData[key])){
             matchData[key] = 0
         }
         

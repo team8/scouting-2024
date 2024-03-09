@@ -66,7 +66,7 @@ const calculatePercents = (teamData) => {
     percents.accurateTrapPercent = (totals.traps)/(totals.traps + totals.failedTraps);
 
     Object.keys(percents).map((key)=> {
-        if (isNaN(percents[key])){
+        if (Number.isNaN(percents[key])){
             percents[key] = 0
         }
         
