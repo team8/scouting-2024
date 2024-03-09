@@ -64,6 +64,13 @@ const calculatePercents = (teamData) => {
     percents.substationIntakePercent = (totals.substationIntakes)/(totals.groundIntakes + totals.substationIntakes);
 
     percents.accurateTrapPercent = (totals.traps)/(totals.traps + totals.failedTraps);
+
+    Object.keys(percents).map((key)=> {
+        if (isNaN(percents[key])){
+            percents[key] = 0
+        }
+        
+    })
     return percents;
 }
 
