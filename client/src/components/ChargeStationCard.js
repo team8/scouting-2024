@@ -33,10 +33,10 @@ const ChargeStationCard = (props) => {
 
                                     {props.stats ? (
                                         <>
-                                            <td>{(1 - (props.stats.percent.parkPercent + props.stats.percent.climbPercent + props.stats.percent.harmonyPercent)) * 100}</td>
-                                            <td>{props.stats.percent.parkPercent * 100}</td>
-                                            <td>{props.stats.percent.climbPercent * 100}</td>
-                                            <td>{props.stats.percent.harmonyPercent * 100}</td>
+                                            <td>{Math.round((1 - (props.stats.percent.parkPercent + props.stats.percent.climbPercent + props.stats.percent.harmonyPercent)) * 10000)/100}</td>
+                                            <td>{Math.round(props.stats.percent.parkPercent * 10000)/100}</td>
+                                            <td>{Math.round(props.stats.percent.climbPercent * 10000)/100}</td>
+                                            <td>{Math.round(props.stats.percent.harmonyPercent * 10000)/100}</td>
                                         </>
                                     ) : (
                                         <>
@@ -63,7 +63,7 @@ const ChargeStationCard = (props) => {
                                     </tr>
                                 </thead>
                                 <tbody>{
-                                    props.stats.avg.traps
+                                    Math.round(props.stats.avg.traps*100)/100
                                 }</tbody>
                             </Table>
                         </Flex>

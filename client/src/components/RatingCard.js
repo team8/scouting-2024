@@ -20,10 +20,10 @@ const RatingCard = (props) => {
                     <tr>
                         {props.stats ? (
                                     <>
-                                    <td>{props.stats.avg.intakeRating === 0 ? 'N/A' :props.stats.avg.intakeRating}</td>
-                                    <td>{ props.stats.avg.driverRating === 0 ? 'N/A' :props.stats.avg.driverRating}</td>
-                                    <td>{props.stats.avg.defenseRating === 0 ? 'N/A' :props.stats.avg.defenseRating}</td>
-                                    <td>{props.stats.avg.climbRating === 0 ? 'N/A' :props.stats.avg.climbRating}</td>
+                                    <td>{props.stats.avg.intakeRating === 0 ? 'N/A' :Math.round(props.stats.avg.intakeRating * 100)/100}</td>
+                                    <td>{ props.stats.avg.driverRating === 0 ? 'N/A' :Math.round(props.stats.avg.driverRating * 100)/100}</td>
+                                    <td>{props.stats.avg.defenseRating === 0 ? 'N/A' :Math.round(props.stats.avg.defenseRating * 100)/100}</td>
+                                    <td>{props.stats.avg.climbRating === 0 ? 'N/A' :Math.round(props.stats.avg.climbRating * 100)/100}</td>
 
                                     </>
                                 ) : (
