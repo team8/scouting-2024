@@ -7,6 +7,7 @@ import Team from './components/screens/Team';
 import Match from './components/screens/Match'
 import AppHeader from './components/AppHeader';
 import Compare from './components/screens/Compare';
+import Test from './components/screens/Test';
 
 export default function App() {
   const theme = useMantineTheme();
@@ -80,6 +81,8 @@ export default function App() {
             <Route path={`team/:number`} element={<Team event={event} />} />
             <Route path={`match/:number`} element={<Match event={event} />} />
             <Route path={`compare`} element={<Compare event={event} />} />
+            {/* <Route path={`compare`} element={<Test/>} /> */}
+
         </Routes>
       </Suspense>
       
