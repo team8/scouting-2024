@@ -1,7 +1,7 @@
 import sortBy from 'lodash/sortBy';
 import { DataTable, DataTableSortStatus } from 'mantine-datatable';
 import { useEffect, useMemo, useState } from 'react';
-import { Box, Button, Divider, Menu, Text } from "@mantine/core";
+import { Box, Button, Divider, Menu, Text, Flex } from "@mantine/core";
 import { MantineReactTable, useMantineReactTable } from 'mantine-react-table';
 import FieldDepth from '../FieldDepth';
 
@@ -182,9 +182,12 @@ const Compare = (props) => {
     return (
         <>
             {currentField &&
-                <>
+                <Flex direction="column" align="center" >
                     <FieldDepth field={currentField} data={stats} />
-                </>
+                    <Button  color='green.4' variant='subtle' onClick={()=>{
+                        setCurrentField("")
+                    }}>Hide Field Depth</Button>
+                </Flex>
             }
             <MantineReactTable
                 columns={columns}
