@@ -36,6 +36,23 @@ const findValue = (qualsList, valueToFind, type) => {
 const calculateValues = (qualsList) => {
     let cumulativeValues = { 'min': {}, 'max': {}, 'average': {}, 'total': {} };
     let valueTypes = Object.keys(cumulativeValues);
+    let autoCoordinatesList = [];
+    let teleopCoordinatesList = [];
+
+
+    for (let i = 0; Object.keys(qualsList).length(); i++) {
+        // through each qual
+        if (qualsList[i]['autoCoordinatesList']) {
+            autoCoordinatesList = [...autoCoordinatesList, ...qualsList[i]['autoCoordinatesList']]
+        }
+
+        if (qualsList[i]['teleopCoordinatesList']) {
+            teleopCoordinatesList = [...teleopCoordinatesList, ...qualsList[i]['teleopCoordinatesList']]
+        }
+    }
+
+    cumulativeValues['total']['autoCoordinatesList'] = autoCoordinatesList
+    cumulativeValues['total']['teleopCoordinatesList'] = teleopCoordinatesList
 
     let valuesToFind = [
         'autoSpeakerNotes', 'autoAmpNotes', 'autoFailedSpeakerNotes', 'autoFailedAmpNotes',
