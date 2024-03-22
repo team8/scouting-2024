@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Card, Title, Table, Tooltip, Text, Center, Space } from '@mantine/core';
-import TeleModal from "./TeleModal";
 
 const TeleCard = (props) => {
     const [amp, setAmp] = useState(0);

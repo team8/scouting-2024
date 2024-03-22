@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Card, Title, Table, Tooltip, Text, Center, Space } from '@mantine/core';
 
-import AutoModal from './AutoModal';
-
 const AutoCard = (props) => {
     const [amp, setAmp] = useState(0);
     const [speaker, setSpeaker] = useState(0);

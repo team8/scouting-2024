@@ -9,7 +9,7 @@ import NotesCard from '../NotesCard';
 import TeleCard from '../TeleCard';
 import ChargeStationCard from '../ChargeStationCard'
 import RatingCard from '../RatingCard';
-
+import HeatmapCard from '../HeatmapCard';
 
 const Team = (props) => {
   const { number } = useParams();
@@ -18,6 +18,7 @@ const Team = (props) => {
   const [stats, setStats] = useState();
   const [matches, setMatches] = useState();
   const [image, setImage] = useState();
+  const sampleData = [[8, 8], [8, 8], [7, 8], [1, 6], [7, 8], [7, 6], [8, 8]];
 
   useEffect(() => {
     setLoading(true);
@@ -81,6 +82,7 @@ const Team = (props) => {
       {/* row two */}
       <Grid.Col span={6}>
         <AutoCard stats={stats} matches={matches}/>
+          <HeatmapCard coordinatesList={sampleData} title={"Auto Heatmap"}></HeatmapCard>
       </Grid.Col>
 
       <Grid.Col span={6}>
