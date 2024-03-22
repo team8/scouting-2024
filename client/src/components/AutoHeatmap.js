@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import {Grid, Card, Title, Space} from '@mantine/core';
+import {Grid, Card, Title, Space, Button} from '@mantine/core';
 import heatmapImages from './heatmap-images';
 import React from "react";
 import h337 from "heatmap.js";
 
-const HeatmapCard = (props) => {
+const AutoHeatmap = (props) => {
     const [coordinatesList, setCoordinatesList] = useState();
     const [fieldOrientation, setFieldOrientation] = useState(1);
 
@@ -31,9 +31,6 @@ const HeatmapCard = (props) => {
         });
 
         if (leftCount < rightCount) {
-            setFieldOrientation(1);
-        }
-        else {
             setFieldOrientation(2);
         }
 
@@ -108,9 +105,11 @@ const HeatmapCard = (props) => {
         <Card>
             <Space h="md"/>
             <Title order={3}>{props.title}</Title>
-            <button onClick={handleHeatmap}>
-                showHeatMap
-            </button>
+            <Space h="md"/>
+            <Button onClick={handleHeatmap}>
+                Show Heat Map
+            </Button>
+            <Space h="md"/>
             <div id="mydiv" className="heatmap" >
                 <img src={heatmapImages[1][fieldOrientation]} width={"80%"} height={"80%"} alt="image"/>
             </div>
@@ -118,4 +117,4 @@ const HeatmapCard = (props) => {
     )
 }
 
-export default HeatmapCard;
+export default AutoHeatmap;
