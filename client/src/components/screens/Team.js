@@ -83,12 +83,12 @@ const Team = (props) => {
       {/* row two */}
       <Grid.Col span={6}>
         <AutoCard stats={stats} matches={matches}/>
-          <AutoHeatmap coordinatesList={sampleData} title={"Auto Heatmap"}></AutoHeatmap>
+          <AutoHeatmap coordinatesList={props.total.autoCoordinatesList} title={"Auto Heatmap"}></AutoHeatmap>
       </Grid.Col>
 
       <Grid.Col span={6}>
         <TeleCard stats={stats} matches={matches}/>
-          <TeleopHeatmap coordinatesList={sampleData} title={"Teleop Heatmap"}></TeleopHeatmap>
+          <TeleopHeatmap coordinatesList={props.total.teleopCoordinatesList} title={"Teleop Heatmap"}></TeleopHeatmap>
       </Grid.Col>
 
       {/* row three */}

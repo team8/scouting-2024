@@ -53,7 +53,7 @@ const TeleopHeatmap = (props) => {
                 '.9': 'red'
             },
             maxOpacity: .9,
-            minOpacity: 0
+            minOpacity: .5
         });
 
         const heatmapCoordinates = calcHeatmapData(props.coordinatesList)
@@ -64,16 +64,16 @@ const TeleopHeatmap = (props) => {
 
         var data1 = {
             data: [
-                {x: 70, y: 525, value: 4, radius: 20},
-                {x: 1600, y: 50, value: 4, radius: 20},
+                {x: 1000, y: 525, value: 4, radius: 20},
+                {x: 1000, y: 50, value: 4, radius: 20},
             ]
         }
 
-        console.log(data1)
+        console.log(data)
 
-        heatmapInstance.setData(data1);
+        heatmapInstance.setData(data);
 
-        var div = document.getElementById('mydiv');
+        var div = document.getElementById('teleopDiv');
         div.style.display = div?.style.display === "block" ? "none" : "block";
 
         document.addEventListener("DOMContentLoaded", function() {
@@ -81,8 +81,8 @@ const TeleopHeatmap = (props) => {
             button.textContent = "showHeatMap";
             button.addEventListener("click", handleHeatmap);
 
-            const div = document.createElement("div");
-            div.id = "mydiv";
+            const div = document.createElement("teleopDiv");
+            div.id = "teleopDiv";
             div.className = "heatmap";
 
             const img = document.createElement("img");
@@ -110,7 +110,7 @@ const TeleopHeatmap = (props) => {
                 Show Heat Map
             </Button>
             <Space h="md"/>
-            <div id="mydiv" className="heatmap" >
+            <div id="teleopDiv" className="heatmap" >
                 <img src={heatmapImages[1][fieldOrientation]} width={"80%"} height={"80%"} alt="image"/>
             </div>
         </Card>
