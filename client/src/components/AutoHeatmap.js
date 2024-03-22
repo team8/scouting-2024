@@ -45,13 +45,6 @@ const AutoHeatmap = (props) => {
     const handleHeatmap = () => {
         let heatmapInstance = h337.create({
             container: document.querySelector('.heatmap'),
-            gradient: {
-                '.1': 'green',
-                '.3': 'green',
-                '.5': 'yellow',
-                '.7': 'orange',
-                '.9': 'red'
-            },
             maxOpacity: .9,
             minOpacity: .5
         });
@@ -67,6 +60,7 @@ const AutoHeatmap = (props) => {
                 {x: 70, y: 525, value: 4, radius: 20},
                 {x: 550, y: 50, value: 4, radius: 20},
             ]
+
         }
 
         console.log(data)

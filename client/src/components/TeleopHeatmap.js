@@ -42,16 +42,9 @@ const TeleopHeatmap = (props) => {
         return heatmapData;
     }
 
-    const handleHeatmap = () => {
-        let heatmapInstance = h337.create({
+    const handleTeleopHeatmap = () => {
+        let teleopInstance = h337.create({
             container: document.querySelector('.heatmap'),
-            gradient: {
-                '.1': 'green',
-                '.3': 'green',
-                '.5': 'yellow',
-                '.7': 'orange',
-                '.9': 'red'
-            },
             maxOpacity: .9,
             minOpacity: .5
         });
@@ -69,30 +62,30 @@ const TeleopHeatmap = (props) => {
             ]
         }
 
-        console.log(data)
+        console.log(data1)
 
-        heatmapInstance.setData(data);
+        teleopInstance.setData(data);
 
         var div = document.getElementById('teleopDiv');
         div.style.display = div?.style.display === "block" ? "none" : "block";
 
         document.addEventListener("DOMContentLoaded", function() {
-            const button = document.createElement("button");
-            button.textContent = "showHeatMap";
-            button.addEventListener("click", handleHeatmap);
+            const teleopButton = document.createElement("teleopButton");
+            teleopButton.textContent = "showTeleopHeatMap";
+            teleopButton.addEventListener("click", handleTeleopHeatmap);
 
-            const div = document.createElement("teleopDiv");
-            div.id = "teleopDiv";
-            div.className = "heatmap";
+            const teleopDiv = document.createElement("teleopDiv");
+            teleopDiv.id = "teleopDiv";
+            teleopDiv.className = "heatmap";
 
-            const img = document.createElement("img");
-            img.src = heatmapImages[1][fieldOrientation];
-            img.alt = "image";
+            const teleopImg = document.createElement("teleopImg");
+            teleopImg.src = heatmapImages[1][fieldOrientation];
+            teleopImg.alt = "image";
 
-            div.appendChild(img);
+            div.appendChild(teleopImg);
 
-            document.body.appendChild(button);
-            document.body.appendChild(div);
+            document.body.appendChild(teleopButton);
+            document.body.appendChild(teleopDiv);
         })
     };
 
@@ -106,7 +99,7 @@ const TeleopHeatmap = (props) => {
             <Space h="md"/>
             <Title order={3}>{props.title}</Title>
             <Space h="md"/>
-            <Button onClick={handleHeatmap}>
+            <Button onClick={handleTeleopHeatmap}>
                 Show Heat Map
             </Button>
             <Space h="md"/>
