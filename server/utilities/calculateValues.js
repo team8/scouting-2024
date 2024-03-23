@@ -39,9 +39,8 @@ const calculateValues = (qualsList) => {
     let autoCoordinatesList = [];
     let teleopCoordinatesList = [];
 
-
-    for (let i = 0; Object.keys(qualsList).length(); i++) {
-        // through each qual
+    console.log(qualsList)
+    Object.keys(qualsList).map((i)=>{
         if (qualsList[i]['autoCoordinatesList']) {
             autoCoordinatesList = [...autoCoordinatesList, ...qualsList[i]['autoCoordinatesList']]
         }
@@ -49,7 +48,10 @@ const calculateValues = (qualsList) => {
         if (qualsList[i]['teleopCoordinatesList']) {
             teleopCoordinatesList = [...teleopCoordinatesList, ...qualsList[i]['teleopCoordinatesList']]
         }
-    }
+    })
+        
+       
+    
 
     cumulativeValues['total']['autoCoordinatesList'] = autoCoordinatesList
     cumulativeValues['total']['teleopCoordinatesList'] = teleopCoordinatesList
