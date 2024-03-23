@@ -11,7 +11,7 @@ import Test from './components/screens/Test';
 
 export default function App() {
   const theme = useMantineTheme();
-  const defaultValue = "2024azgl"
+  const defaultValue = "2024cave"
 
 
   const [event, setEvent] = useState(defaultValue);
