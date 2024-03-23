@@ -29,8 +29,8 @@ export default function App() {
       await fetch(`https://server.palyrobotics.com/event/get-teams/${event}/`)
       .then( (response) => response.json() )
       .then((teams) => {
-        setTeams(teams);
-        console.log(teams);
+        setTeams(teams.map(Number).sort(function(a, b){return a-b}));
+        console.log(teams.map(Number).sort(function(a, b){return a-b}))
       });
     }
 

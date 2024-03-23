@@ -19,7 +19,7 @@ const Team = (props) => {
   const [stats, setStats] = useState();
   const [matches, setMatches] = useState();
   const [image, setImage] = useState();
-  const sampleData = [[8, 8], [8, 8], [7, 8], [1, 6], [7, 8], [7, 6], [8, 8]];
+  // const sampleData = [[8, 8], [8, 8], [7, 8], [1, 6], [7, 8], [7, 6], [8, 8]];
 
   useEffect(() => {
     setLoading(true);
@@ -32,6 +32,7 @@ const Team = (props) => {
 
 
   useEffect(() => {
+    setStats(undefined);
     const getTeam = async () => {
       // await fetch(`https://server.palyrobotics.com/team/${props.event}/${number}`)
       //   .then((response) => {
@@ -83,12 +84,12 @@ const Team = (props) => {
       {/* row two */}
       <Grid.Col span={6}>
         <AutoCard stats={stats} matches={matches}/>
-          {stats && <AutoHeatmap coordinatesList={stats.total.autoCoordinatesList} title={"Auto Heatmap"}></AutoHeatmap>}
+          {stats && <AutoHeatmap coordinatesList={stats.total.autoCoordinatesList?stats.total.autoCoordinatesList:[]} title={"Auto Heatmap"}></AutoHeatmap>}
       </Grid.Col>
 
       <Grid.Col span={6}>
         <TeleCard stats={stats} matches={matches}/>
-          {stats && <TeleopHeatmap coordinatesList={stats.total.teleopCoordinatesList} title={"Teleop Heatmap"}></TeleopHeatmap>}
+          {stats && <TeleopHeatmap coordinatesList={stats.total.teleopCoordinatesList?stats.total.teleopCoordinatesList:[]} title={"Teleop Heatmap"}></TeleopHeatmap>}
       </Grid.Col>
 
       {/* row three */}

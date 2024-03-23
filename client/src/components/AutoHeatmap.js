@@ -6,10 +6,10 @@ import React from "react";
 import Field from '../assets/field.jpg';
 
 const AutoHeatmap = (props) => {
-    const [coordinatesList, setCoordinatesList] = useState();
-    const [redAutoCoords, setRedAutoCoords] = useState();
-    const [redAutoMax, setRedAutoMax] = useState();
-    const [redAutocompleted, setRedAutocompleted] = useState();
+    const [coordinatesList, setCoordinatesList] = useState([]);
+    const [redAutoCoords, setRedAutoCoords] = useState([]);
+    const [redAutoMax, setRedAutoMax] = useState(0);
+    const [redAutocompleted, setRedAutocompleted] = useState(false);
 
     useEffect( () => {
         setCoordinatesList(props.coordinatesList);
