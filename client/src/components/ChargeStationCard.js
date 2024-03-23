@@ -2,9 +2,16 @@ import { Card, Divider, Text, Title, Group, Center, Table, Grid, Flex, Space } f
 import { useEffect, useState } from 'react';
 
 const ChargeStationCard = (props) => {
+    const [robotDied, setRobotDied] = useState(0);
     // useEffect(() => {
     //     console.log(props.stats)
     // })
+
+    useEffect(() => {
+        if (props.stats) {
+            setRobotDied(props.stats.total.died)
+        }
+    }, [props]);
 
     return (
         (props.stats &&
@@ -55,18 +62,41 @@ const ChargeStationCard = (props) => {
                         </Table>
                         <Space h="md"/>
 
-                        <Flex justify='center'>
+                        
                             <Table highlightOnHover>
                                 <thead>
                                     <tr >
-                                        <th ><Title order={4}>Avg Trap</Title></th>
+                                    <th>Avg. Trap</th>
+                                    <th>Died</th>
+                                    <th></th>
+                                    <th></th>
                                     </tr>
                                 </thead>
-                                <tbody>{
-                                    Math.round(props.stats.avg.traps*100)/100
-                                }</tbody>
+
+                                <tbody>
+                                <tr>
+
+                                    {props.stats ? (
+                                        <>
+                                            <td>{Math.round(props.stats.avg.traps*100)/100}</td>
+                                            <td>{robotDied}</td>
+                                            <td></td>
+                                            <td></td>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td></td>
+                                            <td></td>
+                                        </>
+
+                                    )
+                                    }
+
+                                </tr>
+                            </tbody>
                             </Table>
-                        </Flex>
 
 
 

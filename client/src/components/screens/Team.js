@@ -53,7 +53,7 @@ const Team = (props) => {
     const team = JSON.parse(data)
     setNick(team.name);
     setStats({"avg": team.average, "max": team.max, "min": team.min, "total": team.total, "percent": team.percent});
-    
+    console.log(team.total);
     setMatches(team.qm);
     setImage((team.pit || {}).robotImage);
   })
@@ -83,12 +83,12 @@ const Team = (props) => {
       {/* row two */}
       <Grid.Col span={6}>
         <AutoCard stats={stats} matches={matches}/>
-          <AutoHeatmap coordinatesList={props.total.autoCoordinatesList} title={"Auto Heatmap"}></AutoHeatmap>
+          {stats && <AutoHeatmap coordinatesList={stats.total.autoCoordinatesList} title={"Auto Heatmap"}></AutoHeatmap>}
       </Grid.Col>
 
       <Grid.Col span={6}>
         <TeleCard stats={stats} matches={matches}/>
-          <TeleopHeatmap coordinatesList={props.total.teleopCoordinatesList} title={"Teleop Heatmap"}></TeleopHeatmap>
+          {stats && <TeleopHeatmap coordinatesList={stats.total.teleopCoordinatesList} title={"Teleop Heatmap"}></TeleopHeatmap>}
       </Grid.Col>
 
       {/* row three */}
