@@ -40,7 +40,7 @@ const calculateValues = (qualsList) => {
     let teleopCoordinatesList = [];
 
 
-    for (let i = 0; Object.keys(qualsList).length(); i++) {
+    for (let i = 0; qualsList.length(); i++) {
         // through each qual
         if (qualsList[i]['autoCoordinatesList']) {
             autoCoordinatesList = [...autoCoordinatesList, ...qualsList[i]['autoCoordinatesList']]

@@ -12,10 +12,11 @@ const PredictionCard = (props) => {
     useEffect(() => {
         if (props.alliance && keys) {
             let correctedTeams = []
+            
             Object.keys(props.alliance).map((i)=> {
                 
-               
-                correctedTeams.push({"key": keys[i].slice(3), "match": props.alliance[i].qm[number]})
+                console.log(props.alliance[i])
+                correctedTeams.push({"key": keys[i].slice(3), "match": (props.alliance[i].qm || {})[number]})
             })
             setTeams(correctedTeams);
         }
