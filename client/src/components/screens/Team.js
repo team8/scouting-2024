@@ -79,16 +79,16 @@ const Team = (props) => {
       </Grid.Col>
 
       {/* row two */}
-      <Grid.Col span={6}>
+      <Grid.Col span={4}>
         <AutoCard stats={stats} matches={matches}/>
       </Grid.Col>
 
-      <Grid.Col span={6}>
+      <Grid.Col span={4}>
         <TeleCard stats={stats} matches={matches}/>
       </Grid.Col>
 
       {/* row three */}
-      <Grid.Col span={12}>
+      <Grid.Col span={4}>
         <ChargeStationCard stats={stats}></ChargeStationCard>
       </Grid.Col>
 

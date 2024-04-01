@@ -7,7 +7,8 @@ const BarChart = ({ team, event }) => {
   const [loading, setLoading] = useState(true);
   const [matches, setMatches] = useState([]);
   const [auto, setAuto] = useState([]);
-  const [tele, setTele] = useState([]);
+  const [teleAmp, setTeleAmp] = useState([]);
+  const [teleSpeaker, setTeleSpeaker] = useState([]);
   const [endgame, setEndgame] = useState([]);
   
 
@@ -35,9 +36,10 @@ const BarChart = ({ team, event }) => {
   useEffect(() => {
     const asyncFunction = async () => {
       const setTeams = async (matches) => {
-          let array1 = [];
-          let array2 = [];
-          let array3 = [];
+          let auto = [];
+          let teleAmp = [];
+          let teleSpeaker = [];
+          let end = [];
           for (var i in matches) {
               await fetch(`https://server.palyrobotics.com/team/${event}/${team}/${matches[i]}`)
                   .then((response) => response.json())
@@ -45,38 +47,33 @@ const BarChart = ({ team, event }) => {
                       const data = json || {}
                       console.log(data)
                       if (typeof(data.autoPoints) !== "undefined") {
-                        array1.push(data.autoPoints);
-                        array2.push(data.teleopPoints);
-                        array3.push(data.endgamePoints);
+                          auto.push(data.autoPoints);
+                          teleAmp.push(data.teleopAmpNotes);
+                          teleSpeaker.push(data.teleopPoints-data.teleopAmpNotes);
+                          end.push(data.endgamePoints);
                       } else {
-                        array1.push(0);
-                        array2.push(0);
-                        array3.push(0);
+                          auto.push(0);
+                          teleAmp.push(0);
+                          teleSpeaker.push(0);
+                          end.push(0);
                       }
                   });
           }
-          return [array1, array2, array3];
+          return [auto, teleAmp, teleSpeaker, end];
       }
 
       if (matches) {
         let arr = await setTeams(matches);
         setAuto(arr[0]);
-        setTele(arr[1]);
-        setEndgame(arr[2]);
-          
+        setTeleAmp(arr[1]);
+        setTeleSpeaker(arr[2]);
+        setEndgame(arr[3]);
       } 
     }
     asyncFunction();
   }, [matches])
 
   const options = {
-    // plugins: {
-    //   title: {
-    //     display: true,
-    //     text: 'Chart.js Bar Chart - Stacked',
-    //   },
-    // },
-    // responsive: true,
     scales: {
       x: {
           stacked: true,
@@ -92,20 +89,26 @@ const BarChart = ({ team, event }) => {
     datasets: [
       {
         label: "Endgame",
-        backgroundColor: "#173518",
-        borderColor: "#173518",
+        backgroundColor: "#062e08",
+        borderColor: "#062e08",
         data: endgame,
       },
       {
-        label: "Tele",
-        backgroundColor: "#1e4620",
-        borderColor: "#1e4620",
-        data: tele,
+        label: "Teleop Amp",
+        backgroundColor: "#134015",
+        borderColor: "#134015",
+        data: teleAmp,
       },
-      {
+    {
+        label: "Teleop Speaker",
+        backgroundColor: "#245c26",
+        borderColor: "#245c26",
+        data: teleSpeaker,
+    },
+        {
         label: "Auto",
-        backgroundColor: "#265828",
-        borderColor: "#265828",
+        backgroundColor: "#367538",
+        borderColor: "#367538",
         data: auto,
     }
     ],
