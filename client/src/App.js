@@ -8,10 +8,11 @@ import Match from './components/screens/Match'
 import AppHeader from './components/AppHeader';
 import Compare from './components/screens/Compare';
 import Test from './components/screens/Test';
+import Picklist from './components/screens/Picklist';
 
 export default function App() {
   const theme = useMantineTheme();
-  const defaultValue = "2024cave"
+  const defaultValue = "2024azgl"
 
 
   const [event, setEvent] = useState(defaultValue);
@@ -81,7 +82,7 @@ export default function App() {
             <Route path={`team/:number`} element={<Team event={event} />} />
             <Route path={`match/:number`} element={<Match event={event} />} />
             <Route path={`compare`} element={<Compare event={event} />} />
-            {/* <Route path={`compare`} element={<Test/>} /> */}
+            <Route path={`picklist`} element={<Picklist event={event} />} />
 
         </Routes>
       </Suspense>

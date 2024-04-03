@@ -1,6 +1,6 @@
 import { Navbar, NavLink, ScrollArea } from "@mantine/core";
 import { useState } from "react";
-import { IconListNumbers, IconUsers, IconTable } from "@tabler/icons-react";
+import { IconListNumbers, IconUsers, IconTable, IconAlignCenter } from "@tabler/icons-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const AppNavbar = (props) => {
@@ -45,6 +45,11 @@ const AppNavbar = (props) => {
                 setActive("Compare");
                 navigate("/compare");
             }}/>
+            <NavLink label="Picklist" icon={<IconAlignCenter size="1rem" stroke={1.5}/>} active={active === "Picklist" ? true : false} onClick={()=>{
+                setActive("Picklist");
+                navigate("/picklist")
+            }}
+            />
         </Navbar>
 )
 }

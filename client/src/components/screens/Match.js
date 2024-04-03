@@ -210,7 +210,7 @@ const Match = (props) => {
                             <div>
                                 <img src={Field} resizeMode={'cover'} style={{width: '100%'}}/>
                                 {redStats && redAutocompleted && redStats.map((team) => (
-                                    team.qm[number] && team.qm[number].autoCoordinatesList && testingMatrix.map((coords, index) => (
+                                    team.qm[number] && team.qm[number].autoCoordinatesList && team.qm[number].autoCoordinatesList.map((coords, index) => (
                                         <div 
                                             key={index}
                                             style={{
@@ -226,7 +226,7 @@ const Match = (props) => {
                                     ))
                                 ))}
                                 {blueStats && blueAutocompleted && blueStats.map((team) => (
-                                    team.qm[number] && team.qm[number].autoCoordinatesList && testingMatrix.map((coords, index) => (
+                                    team.qm[number] && team.qm[number].autoCoordinatesList && team.qm[number].autoCoordinatesList.map((coords, index) => (
                                         <div 
                                             key={index}
                                             style={{
@@ -253,7 +253,7 @@ const Match = (props) => {
                         <div>
                             <img src={Field} resizeMode={'cover'} style={{width: '100%'}}/>
                             {redStats && redTeleopcompleted && redStats.map((team) => (
-                                    team.qm[number] && team.qm[number].teleopCoordinatesList && testingMatrix.map((coords, index) => (
+                                    team.qm[number] && team.qm[number].teleopCoordinatesList && team.qm[number].teleopCoordinatesList.map((coords, index) => (
                                         <div 
                                             key={index}
                                             style={{
@@ -269,7 +269,7 @@ const Match = (props) => {
                                     ))
                                 ))}
                             {blueStats && blueTeleopcompleted && blueStats.map((team) => (
-                                    team.qm[number] && team.qm[number].teleopCoordinatesList && testingMatrix.map((coords, index) => (
+                                    team.qm[number] && team.qm[number].teleopCoordinatesList && team.qm[number].teleopCoordinatesList.map((coords, index) => (
                                         <div 
                                             key={index}
                                             style={{
