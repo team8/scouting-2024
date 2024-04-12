@@ -11,6 +11,7 @@ import ChargeStationCard from '../ChargeStationCard'
 import RatingCard from '../RatingCard';
 import AutoHeatmap from '../AutoHeatmap';
 import TeleopHeatmap from "../TeleopHeatmap";
+import GPTSummary from "../GPTSummary";
 
 const Team = (props) => {
   const { number } = useParams();
@@ -54,7 +55,6 @@ const Team = (props) => {
     const team = JSON.parse(data)
     setNick(team.name);
     setStats({"avg": team.average, "max": team.max, "min": team.min, "total": team.total, "percent": team.percent});
-    console.log(team.total);
     setMatches(team.qm);
     setImage((team.pit || {}).robotImage);
   })
@@ -94,6 +94,11 @@ const Team = (props) => {
 
       {/* row three */}
       <Grid.Col span={12}>
+        <GPTSummary matches={matches}></GPTSummary>
+      </Grid.Col>
+
+      {/* row four */}
+      <Grid.Col span={12}>
         <ChargeStationCard stats={stats}></ChargeStationCard>
       </Grid.Col>
 
@@ -101,7 +106,7 @@ const Team = (props) => {
         <RatingCard stats={stats}></RatingCard>
       </Grid.Col>
       
-      {/* row fourt */}
+      {/* row five */}
       <Grid.Col span={12}>
         <Card>
           <NotesCard matches={matches}/>

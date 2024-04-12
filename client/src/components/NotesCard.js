@@ -31,7 +31,7 @@ const NotesCard = (props) => {
                 <tr>
                     <th>Qual</th>
                     <th>Notes</th>
-                    <th>Charge notes</th>
+                    <th>Charge Notes</th>
                     <th>Scouter</th>
                 </tr>
             </thead>
