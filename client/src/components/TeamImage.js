@@ -2,22 +2,20 @@ import { Card, Grid, Image, Title, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 
 const TeamImage = (props) => {
-    const [id, setId] = useState();
+    const [imgUrl, setImgUrl] = useState();
+
+    const getLink = () => {
+        setImgUrl("https://drive.google.com/thumbnail?id="+props.image+"&sz=w1000");
+    }
 
     useEffect(() => {
-        if (props.image) {
-            let local = props.image.substring(33);
-            setId(local);
-        }
+        console.log(props.image)
+        getLink();
     }, [props])
 
     return (
         <Card>
-            {
-                id ? (<Image src={`https://lh3.googleusercontent.com/d/${id}`} />) : (<Text>No Image Preview Available</Text>)
-                // id ? (<Image src="https://lh3.googleusercontent.com/d/17CKGEhR_B2CHgURSqs-_2Rfkkc6D9GK6" />) : (<Text>No Image Preview Available</Text>)
-                
-            }
+            <Image src={imgUrl}></Image>
         </Card>
     )
 }

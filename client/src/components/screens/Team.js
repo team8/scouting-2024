@@ -17,11 +17,9 @@ const Team = (props) => {
   const [nick, setNick] = useState();
   const [stats, setStats] = useState();
   const [matches, setMatches] = useState();
-  const [image, setImage] = useState();
 
   useEffect(() => {
     setLoading(true);
-    
     setTimeout(() => {
       setLoading(false);
     },1000);
@@ -31,20 +29,6 @@ const Team = (props) => {
 
   useEffect(() => {
     const getTeam = async () => {
-      // await fetch(`https://server.palyrobotics.com/team/${props.event}/${number}`)
-      //   .then((response) => {
-         
-      //       response.text()
-      //   })
-      //   .then((data) => {
-      //     const team = JSON.parse(data)
-      //     setNick(team.name);
-      //     setStats(team.stats);
-          
-      //     setMatches(team.qm);
-      //     setImage((team.pit || {}).robotImage);
-
-      // });
       fetch(`https://server.palyrobotics.com/team/${props.event}/${number}`)
   .then((response) => response.text())
   .then((data) => {
@@ -53,12 +37,12 @@ const Team = (props) => {
     setStats({"avg": team.average, "max": team.max, "min": team.min, "total": team.total, "percent": team.percent});
     
     setMatches(team.qm);
-    setImage((team.pit || {}).robotImage);
   })
   .catch((error) => console.error(error));
     }
 
     getTeam();
+
   }, [loading]);
 
   // if (loading) return (
@@ -75,7 +59,7 @@ const Team = (props) => {
         </Card>
       </Grid.Col>
       <Grid.Col span={4}>
-        <TeamImage image={image} />
+        <TeamImage image={stats && stats.total.image} />
       </Grid.Col>
 
       {/* row two */}
