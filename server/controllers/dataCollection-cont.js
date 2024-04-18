@@ -55,8 +55,7 @@ const addData = async (req, res, next) => {
 
     console.log("MATCH DATA: ", matchData)
 
-    console.log(data.match)
-    const matchNo = data.match.slice(1)
+    const matchNo = matchData.mNo.slice(1)
     console.log("jhello")
     console.log(event)
     console.log(data.team)
