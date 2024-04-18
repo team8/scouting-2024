@@ -29,6 +29,7 @@
     "deR": "defenseRating",
     "iR":"intakeRating",
     "cR": "climbRating",
-    "n": "notes"
+    "n": "notes",
+    "coIR": "intakeRating"
 
 }
