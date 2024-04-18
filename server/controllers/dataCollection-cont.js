@@ -25,7 +25,8 @@ const addData = async (req, res, next) => {
     console.log(matchData)
 
     
-    const event = matchData.event.slice(0, 8)
+    const event = matchData.event.slice(0, 7)
+    
 
 
     let totalSpeakerNotes = matchData.autoSpeakerNotes + matchData.teleopSpeakerNotes;

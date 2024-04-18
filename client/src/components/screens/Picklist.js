@@ -42,29 +42,29 @@ const Picklist = (props) => {
             setTimeout(async function () {
                 if (!stopRequesting) {
                     try {
-                        await fetch("https://server.palyrobotics.com/event/get-picklist/"+props.event).then(
-                            (res)=> res.json()
-                        ).then(async (data)=>{
+                        await fetch("https://server.palyrobotics.com/event/get-picklist/" + props.event).then(
+                            (res) => res.json()
+                        ).then(async (data) => {
                             console.log(data)
-                            if (_.isEqual(data, remoteBucketsMemory)){
+                            if (_.isEqual(data, remoteBucketsMemory)) {
                                 console.log("remote is equal to mem")
-                                if(!_.isEqual(buckets, data)){
+                                if (!_.isEqual(buckets, data)) {
                                     console.log("Local Change")
-                                    await fetch("https://server.palyrobotics.com/event/set-picklist/"+props.event, {
+                                    await fetch("https://server.palyrobotics.com/event/set-picklist/" + props.event, {
                                         method: "POST",
                                         headers: {
                                             "Content-Type": "application/json"
                                         },
                                         body: JSON.stringify(buckets)
-                                    }).then((res)=>{
+                                    }).then((res) => {
                                         res.text()
-                                    }).then((data)=>{
+                                    }).then((data) => {
                                         console.log(data)
                                     })
                                 }
 
 
-                            }else{
+                            } else {
                                 console.log("remote is not equal to mem")
                                 setBuckets(data)
                                 setRerenderKey(prevKey => prevKey + 1);
@@ -163,10 +163,11 @@ const Picklist = (props) => {
                                                     mr={"md"}
                                                     color="red"
                                                     onClick={() => {
-                                                        var tempBuckets = {...buckets}
-                                                        delete tempBuckets[name]
-                                                        setBuckets(tempBuckets)
-
+                                                        if (window.confirm("Are You Sure You Want To Delete This Bucket?")) {
+                                                            var tempBuckets = { ...buckets }
+                                                            delete tempBuckets[name]
+                                                            setBuckets(tempBuckets)
+                                                        }
                                                     }}
                                                 >
                                                     <IconTrash />
