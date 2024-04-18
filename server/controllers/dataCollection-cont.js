@@ -26,7 +26,7 @@ const addData = async (req, res, next) => {
 
     
     const event = matchData.event.slice(0, 7)
-    
+
 
 
     let totalSpeakerNotes = matchData.autoSpeakerNotes + matchData.teleopSpeakerNotes;
@@ -53,8 +53,9 @@ const addData = async (req, res, next) => {
     matchData.endgamePoints = points[2]
     matchData.pointsScored = points[0]+points[1]+points[2]
 
-    console.log(matchData)
+    console.log("MATCH DATA: ", matchData)
 
+    console.log(data.match)
     const matchNo = data.match.slice(1)
     console.log("jhello")
     console.log(event)
