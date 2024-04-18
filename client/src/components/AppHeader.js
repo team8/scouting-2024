@@ -16,7 +16,7 @@ const AppHeader = (props) => {
               <Tabs.List position="right">
                 <Tabs.Tab value="2024cave">Ventura County Regional 2024</Tabs.Tab>
                 <Tabs.Tab value="2024azgl">Arizona East Regional 2024</Tabs.Tab>
-                <Tabs.Tab value="2024cmptx">Worlds 2024</Tabs.Tab>
+                <Tabs.Tab value="2024joh">Johnson Division 2024</Tabs.Tab>
               </Tabs.List>
             </Tabs>
           </Grid.Col>

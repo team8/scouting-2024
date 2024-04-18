@@ -9,7 +9,8 @@ import NotesCard from '../NotesCard';
 import TeleCard from '../TeleCard';
 import ChargeStationCard from '../ChargeStationCard'
 import RatingCard from '../RatingCard';
-
+import AutoHeatmap from "../AutoHeatmap";
+import TeleopHeatmap from "../TeleopHeatmap";
 
 const Team = (props) => {
   const { number } = useParams();
@@ -64,11 +65,13 @@ const Team = (props) => {
 
       {/* row two */}
       <Grid.Col span={4}>
-        <AutoCard stats={stats} matches={matches}/>
+          <AutoCard stats={stats} matches={matches}/>
+          {stats && <AutoHeatmap coordinatesList={stats.total.autoCoordinatesList?stats.total.autoCoordinatesList:[]} title={"Auto Heatmap"}></AutoHeatmap>}
       </Grid.Col>
 
       <Grid.Col span={4}>
-        <TeleCard stats={stats} matches={matches}/>
+          <TeleCard stats={stats} matches={matches}/>
+          {stats && <TeleopHeatmap coordinatesList={stats.total.teleopCoordinatesList?stats.total.teleopCoordinatesList:[]} title={"Teleop Heatmap"}></TeleopHeatmap>}
       </Grid.Col>
 
       {/* row three */}
