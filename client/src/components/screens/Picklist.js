@@ -3,6 +3,9 @@ import { IconDeviceFloppy, IconPencil, IconPlus, IconTrash } from "@tabler/icons
 import { useEffect, useMemo, useState } from 'react';
 import { MantineReactTable } from 'mantine-react-table';
 var _ = require('lodash');
+const fd = require('../../utilities/findDifferences.js')
+const mc = require("../../utilities/makeChanges.js")
+
 
 const Picklist = (props) => {
     const [rerenderKey, setRerenderKey] = useState(0);
@@ -42,34 +45,60 @@ const Picklist = (props) => {
             setTimeout(async function () {
                 if (!stopRequesting) {
                     try {
-                        await fetch("https://server.palyrobotics.com/event/get-picklist/" + props.event).then(
+                        await fetch("http://localhost:4000/event/get-picklist/" + props.event).then(
                             (res) => res.json()
                         ).then(async (data) => {
                             console.log(data)
-                            if (_.isEqual(data, remoteBucketsMemory)) {
-                                console.log("remote is equal to mem")
-                                if (!_.isEqual(buckets, data)) {
-                                    console.log("Local Change")
-                                    await fetch("https://server.palyrobotics.com/event/set-picklist/" + props.event, {
-                                        method: "POST",
-                                        headers: {
-                                            "Content-Type": "application/json"
-                                        },
-                                        body: JSON.stringify(buckets)
-                                    }).then((res) => {
-                                        res.text()
-                                    }).then((data) => {
-                                        console.log(data)
-                                    })
-                                }
-
-
-                            } else {
-                                console.log("remote is not equal to mem")
-                                setBuckets(data)
+                            const diffs = fd.findDifferences(remoteBucketsMemory, data, [])
+                            console.log(diffs)
+                            const newBuckets = mc.makeChanges(diffs, buckets)
+                            if (!_.isEqual(newBuckets, buckets)) {
+                                setBuckets(newBuckets);
                                 setRerenderKey(prevKey => prevKey + 1);
-                                setRemoteBucketsMemory(data)
+
                             }
+                            if (!_.isEqual(buckets, data)) {
+                                console.log("Local Change")
+                                console.log("Buckets: ", buckets)
+                                await fetch("http://localhost:4000/event/set-picklist/" + props.event, {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                    body: JSON.stringify(buckets)
+                                }).then((res) => {
+                                    res.text()
+                                }).then((data) => {
+                                    console.log(data)
+                                })
+                            }
+                            setRemoteBucketsMemory(data);
+
+
+                            // if (_.isEqual(data, remoteBucketsMemory)) {
+                            //     console.log("remote is equal to mem")
+                            //     if (!_.isEqual(buckets, data)) {
+                            //         console.log("Local Change")
+                            //         await fetch("http://localhost:4000/event/set-picklist/" + props.event, {
+                            //             method: "POST",
+                            //             headers: {
+                            //                 "Content-Type": "application/json"
+                            //             },
+                            //             body: JSON.stringify(buckets)
+                            //         }).then((res) => {
+                            //             res.text()
+                            //         }).then((data) => {
+                            //             console.log(data)
+                            //         })
+                            //     }
+
+
+                            // } else {
+                            //     console.log("remote is not equal to mem")
+                            //     setBuckets(data)
+                            //     setRerenderKey(prevKey => prevKey + 1);
+                            //     setRemoteBucketsMemory(data)
+                            // }
                         })
 
                     } catch (err) {
