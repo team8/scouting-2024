@@ -210,4 +210,22 @@ const getAtLab = async (req, res, next) => {
     res.send(atLab)
 }
 
-module.exports = { getTableData, idEntered, checkPassword, getSubteamHours, getStudentData, addHours, correctStudentData, getHours, getAtLab }
+const initializeAttendance = async (req, res, next) => {
+    Object.keys(attendance).map(async (i)=>{
+
+        
+        if(i !== "studentData" && i !== "loggedInUsers"){
+            console.log("delete")
+            console.log(i)
+            await set(ref(firebase, `/attendance/${i}`), {});
+        }
+    })
+    attendance.studentData.map( async (i)=>{
+
+    
+        await set(ref(firebase, `/attendance/${i.studentId}`), {...i, "hours": 0});
+    })
+    res.send("done");
+}
+
+module.exports = { getTableData, idEntered, checkPassword, getSubteamHours, getStudentData, addHours, correctStudentData, getHours, getAtLab, initializeAttendance }
